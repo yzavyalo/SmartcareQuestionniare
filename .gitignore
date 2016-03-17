@@ -16,6 +16,31 @@ gen/
 .gradle/
 build/
 
+
+*.o
+*.o.d
+*.so
+# Generated files
+/bin
+/build
+/gen
+ /app/src/main/obj
+/app/src/main/libs
+
+# Gradle files
+/.gradle/
+/local.properties
+
+
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+
+smartcare_questionnaire.iml
+gradlew
+gradlew.bat
+
+
 # Local configuration file (sdk path, etc)
 local.properties
 
@@ -30,3 +55,5 @@ proguard/
 
 # Android Studio captures folder
 captures/
+
+*~
