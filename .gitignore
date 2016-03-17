@@ -25,7 +25,6 @@ build/
 /build
 /gen
  /app/src/main/obj
-/app/src/main/libs
 
 # Gradle files
 /.gradle/
