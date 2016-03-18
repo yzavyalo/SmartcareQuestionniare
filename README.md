@@ -49,7 +49,7 @@ Photo —  загрузить фото
 File —  загрузить бинарный файл
 
 <h2>Пример</h2>
-<code>
+```groovy
 static protected long nodeDescriptor;
 nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
         if (nodeDescriptor == -1){ return;}	
@@ -78,5 +78,5 @@ for (int i = 0; i < q.size(); i++) {
     }
 }
 disconnectSmartSpace(nodeDescriptor);
-</code>
+```
 
