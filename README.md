@@ -1,4 +1,4 @@
-# smartcare_questionniare
+# SmartcareQuestionniare
 
 <h2>Native</h2>
 
@@ -18,10 +18,9 @@ String getUri() - получения идентификатора вопросн
 
 String getDescription()  - получение вопроса
 
- String getUri() - получения идентификатора вопрос в ИП
+String getUri() - получения идентификатора вопрос в ИП
 
 Answer getAnswer() - получение ответа
-
 
 <h2>Class Answer </h2>
 
@@ -43,91 +42,65 @@ String getUri() - получения идентификатора вариант
 
 <h2>Типы ответов</h2>
 
-SingleChoise —  одновариантный ответ
+SingleChoise —  одновариантный ответ;
 
-MultipleChoise — многовариантный ответ
+MultipleChoise — многовариантный ответ;
 
-BipolarQuestion — шкальный вопрос с непрерывной шкалой
+BipolarQuestion — шкальный вопрос с непрерывной шкалой;
 
-Dichotomous — дихотомический вопрос типа "да - нет"
+Dichotomous — дихотомический вопрос типа "да - нет";
 
-GuttmanScale — ответ - оценка интенсивности по шкале Гуттман
+GuttmanScale — ответ - оценка интенсивности по шкале Гуттман;
 
-LikertScale — ответ - разъяснение по шкале Лайкерта
+LikertScale — ответ - разъяснение по шкале Лайкерта;
 
-ContinuousScale —  ответ - оценка по шкале
+ContinuousScale —  ответ - оценка по шкале;
 
-Text —  текст
+Text —  текст;
 
-Number —  ответ — число
+Number —  ответ — число;
 
-Phone —  номер телефона
+Phone —  номер телефона;
 
-Email —  адрес электронной почты
+Email —  адрес электронной почты;
 
-Video —  загрузить видео
+Video —  загрузить видео;
 
-Audio —  загрузить аудио
+Audio —  загрузить аудио;
 
-Photo —  загрузить фото 
+Photo —  загрузить фото;
 
-File —  загрузить бинарный файл
+File —  загрузить бинарный файл.
 
 <h2>Пример</h2>
-
+```groovy
 static protected long nodeDescriptor;
-
 nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
-
         if (nodeDescriptor == -1){ return;}	
-
 Questionnaire questionnaire;
-
 questionnaire = getQuestionnaire(nodeDescriptor);
-
 LinkedList <Question> q = questionnaire.getQuestions();
-
 for (int i = 0; i < q.size(); i++) {
-
     Question qst = q.get(i);
-
     Log.i(TAG, qst.getDescription());
-
     Answer a = qst.getAnswer();
-
     Log.i(TAG, a.getType());
-
     LinkedList<AnswerItem> ai = a.getItems();
-
     if (ai.size() > 0){
-
         for (int j = 0; j < ai.size(); j++) {
-
             AnswerItem item = ai.get(j);
-
             Log.i(TAG, item.getItemText());
-
             LinkedList<Answer> suba = item.getSubAnswers();
-
             if (suba.size() > 0) {
-
                for (int k = 0; k < suba.size(); k++) {
-
                    Answer sitem = suba.get(k);
-
                    Log.i(TAG, a.getType());
-
                    LinkedList<AnswerItem> sai = sitem.getItems();
-
                }
-
            }
-
         }
     }
-
 }
-
 disconnectSmartSpace(nodeDescriptor);
-
+```
 
