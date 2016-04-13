@@ -1,5 +1,6 @@
 package com.petrsu.cardiacare.smartcarequestionnaire;
 
+import android.app.AlertDialog;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.content.DialogInterface;
+
+
+import android.view.MenuItem;
+import android.widget.Toast;
+
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -29,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
+
     private GoogleApiClient client;
 
     public MainActivity() {
@@ -63,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         /*****************************
          * SS init
          *****************************/
+
+
         nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
         if (nodeDescriptor == -1) {
             return;
@@ -107,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void writeData ( String data ){
         try {
-            FileOutputStream fOut = openFileOutput (filename , MODE_PRIVATE );
+            FileOutputStream fOut = openFileOutput(filename, MODE_PRIVATE);
             OutputStreamWriter osw = new OutputStreamWriter(fOut);
             osw.write(data);
             osw.flush();
@@ -184,6 +194,33 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public boolean onOptionsItemSelected (MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_settings:
+                Toast.makeText(MainActivity.this, getString(R.string.action_settings), Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.action_exit:
+                onBackPressed();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Вы действительно хотите выйти?")
+                .setCancelable(false)
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                }).setNegativeButton("Нет", null).show();
+    };
+
     public void onDestroy() {
         moveTaskToBack(true);
         super.onDestroy();
@@ -231,4 +268,9 @@ public class MainActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
+
+
+
 }
+

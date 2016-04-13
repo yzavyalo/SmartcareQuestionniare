@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Questionnaire</string>
+    <string name="app_name">Healthcare</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_back"></string>
+    <string name="action_exit">Выход</string>
+    <string name="action_about">О программе</string>
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
