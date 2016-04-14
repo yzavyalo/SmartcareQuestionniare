@@ -1,11 +1,13 @@
 package com.petrsu.cardiacare.smartcarequestionnaire;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     // Native code part end
     Questionnaire questionnaire;
     Toolbar mToolbar;
-
+    AccountStorage storage;
     String filename = "questionnaire.json";
 
     @Override
@@ -103,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
                     printQuestionnaire(qst);
             }
         });
+
+
+        storage = new AccountStorage();
+        storage.sPref = getSharedPreferences(storage.ACCOUNT_PREFERENCES, MODE_PRIVATE);
+
     }
 
     public void writeData ( String data ){
@@ -182,6 +189,22 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Intent intentAccount = new Intent(this, UserAccount.class);
+            startActivity(intentAccount);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void onDestroy() {
