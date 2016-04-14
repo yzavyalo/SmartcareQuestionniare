@@ -45,4 +45,6 @@
     <string name="Age">Age</string>
     <string name="sign">Sign in</string>
 
+    <string name="menu_refresh">Refresh</string>
+
 </resources>
