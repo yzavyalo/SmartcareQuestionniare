@@ -36,9 +36,16 @@
         android:layout_height="wrap_content"
         android:text="About"
         android:id="@+id/AboutLoad"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/buttonSSLoad"
-        android:layout_marginBottom="48dp" />
+        android:layout_below="@+id/QuestionaireLoad"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASS SURVEY"
+        android:id="@+id/QuestionaireLoad"
+        android:layout_below="@+id/buttonLJson"
+        android:layout_centerHorizontal="true" />
 
     <!--<android.support.v7.widget.RecyclerView-->
         <!--xmlns:android="http://schemas.android.com/apk/res/android"-->

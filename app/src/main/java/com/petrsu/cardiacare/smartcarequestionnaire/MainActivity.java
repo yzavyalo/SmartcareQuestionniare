@@ -117,6 +117,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentq);// About
             }// About
         });// About
+
+        Button QuestionaireLoad; // QuestionaireActivity
+        QuestionaireLoad = (Button) findViewById(R.id.QuestionaireLoad);// Questionaire
+        QuestionaireLoad.setOnClickListener(new View.OnClickListener() {// Questionaire
+            @Override // Questionaire
+            public void onClick(View v) {// Questionaire
+                Intent intentq = new Intent(MainActivity.this, QuestionaireActivity.class);// Questionaire
+                startActivity(intentq);// Questionaire
+            }// Questionaire
+        });// Questionaire
     }
 
     public void writeData ( String data ){
