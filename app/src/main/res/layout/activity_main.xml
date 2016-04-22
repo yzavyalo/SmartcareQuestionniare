@@ -12,8 +12,6 @@
         android:layout_height="wrap_content"
         android:text="Load from SmartSpace"
         android:id="@+id/buttonSSLoad"
-
-        android:padding="16dp"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true" />
 
@@ -22,23 +20,25 @@
         android:layout_height="wrap_content"
         android:text="Save in Json"
         android:id="@+id/buttonSJson"
-
-        android:padding="16dp"
-
         android:layout_below="@+id/buttonSSLoad"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width= "wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Load from JSON"
         android:id="@+id/buttonLJson"
-
-        android:padding="16dp"
-
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/buttonSJson"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:id="@+id/AboutLoad"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/buttonSSLoad"
+        android:layout_marginBottom="48dp" />
 
     <!--<android.support.v7.widget.RecyclerView-->
         <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
