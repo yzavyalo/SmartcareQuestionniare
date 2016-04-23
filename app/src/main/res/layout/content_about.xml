@@ -14,5 +14,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:text="The app is designed to help people ..." />
+       android:text="The app is designed to help people who find themselves in emergency situations outside the home. If the patient feels ill, he can either call an ambulance on their own or with the help of the application to inform the volunteers.
+\nDevelopers:
+\n Y. Zavyalovа,
+\n M. Kluchnikov,
+\n A. Dyatlova,
+\n V. Fokin,
+\n K. Shevtsova,
+\n K. Orlov
+\nVersion: 1.0" />
 </RelativeLayout>
