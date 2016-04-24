@@ -36,14 +36,14 @@
         android:layout_height="wrap_content"
         android:text="About"
         android:id="@+id/AboutLoad"
-        android:layout_below="@+id/QuestionaireLoad"
+        android:layout_below="@+id/QuestionnaireLoad"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PASS SURVEY"
-        android:id="@+id/QuestionaireLoad"
+        android:id="@+id/QuestionnaireLoad"
         android:layout_below="@+id/buttonLJson"
         android:layout_centerHorizontal="true" />
 

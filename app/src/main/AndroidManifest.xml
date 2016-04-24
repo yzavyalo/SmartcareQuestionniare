@@ -49,8 +49,8 @@
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".QuestionaireActivity"
-            android:label="@string/title_activity_questionaire"
+            android:name=".QuestionnaireActivity"
+            android:label="@string/title_activity_questionnaire"
             android:theme="@style/AppTheme"></activity>
     </application>
 

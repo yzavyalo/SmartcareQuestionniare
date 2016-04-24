@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.petrsu.cardiacare.smartcarequestionnaire.QuestionaireActivity"
-    tools:showIn="@layout/content_questionaire">
+    tools:context="com.petrsu.cardiacare.smartcarequestionnaire.QuestionnaireActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,11 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv"
-        />
-
+    <include layout="@layout/content_questionnaire" />
 
 </android.support.design.widget.CoordinatorLayout>

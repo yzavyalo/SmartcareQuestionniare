@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -65,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
          * SS init
          *****************************/
         nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
-        if (nodeDescriptor == -1) {
-            return;
-        }
+            while (nodeDescriptor == -1) {
+                nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
+                //TimeUnit.SECONDS.sleep(2);
+                //return;
+            }
         setRegisteredActivity();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -118,15 +121,15 @@ public class MainActivity extends AppCompatActivity {
             }// About
         });// About
 
-        Button QuestionaireLoad; // QuestionaireActivity
-        QuestionaireLoad = (Button) findViewById(R.id.QuestionaireLoad);// Questionaire
-        QuestionaireLoad.setOnClickListener(new View.OnClickListener() {// Questionaire
+        Button QuestionnaireLoad; // QuestionnaireActivity
+        QuestionnaireLoad = (Button) findViewById(R.id.QuestionnaireLoad);// Questionnaire
+        QuestionnaireLoad.setOnClickListener(new View.OnClickListener() {// Questionaire
             @Override // Questionaire
-            public void onClick(View v) {// Questionaire
-                Intent intentq = new Intent(MainActivity.this, QuestionaireActivity.class);// Questionaire
-                startActivity(intentq);// Questionaire
+            public void onClick(View v) {// Questionnaire
+                Intent intentq = new Intent(MainActivity.this, QuestionnaireActivity.class);// Questionnaire
+                startActivity(intentq);// Questionnaire
             }// Questionaire
-        });// Questionaire
+        });// Questionnaire
     }
 
     public void writeData ( String data ){

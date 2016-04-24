@@ -9,7 +9,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.petrsu.cardiacare.smartcarequestionnaire.QuestionaireActivity"
-    tools:showIn="@layout/activity_questionaire">
+    tools:context="com.petrsu.cardiacare.smartcarequestionnaire.QuestionnaireActivity"
+    tools:showIn="@layout/activity_questionnaire">
+
+    <!-- A RecyclerView with some commonly used attributes -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true" />
+
+
 
 </RelativeLayout>
