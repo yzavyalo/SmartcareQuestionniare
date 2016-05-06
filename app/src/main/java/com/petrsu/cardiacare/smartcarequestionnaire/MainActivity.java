@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     static protected long nodeDescriptor;
     // Native code part end
-    Questionnaire questionnaire;
+    static protected Questionnaire questionnaire;
     Toolbar mToolbar;
     AccountStorage storage;
     String filename = "questionnaire.json";
@@ -66,11 +66,6 @@ public class MainActivity extends AppCompatActivity {
          * SS init
          *****************************/
         nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
-            while (nodeDescriptor == -1) {
-                nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
-                //TimeUnit.SECONDS.sleep(2);
-                //return;
-            }
         setRegisteredActivity();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -103,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 String jasonFromFile = readSavedData();
                     Gson json = new Gson();
                     Questionnaire qst = json.fromJson(jasonFromFile,Questionnaire.class);
-                    printQuestionnaire(qst);
+                    questionnaire = qst;
+                    printQuestionnaire(questionnaire);
             }
         });
 

@@ -12,7 +12,6 @@ public class Question {
     private String description;
     Answer answer;
 
-
     public Question(String uri_from_sib, String description_from_sib){
          this.uri = uri_from_sib;
          this.description = description_from_sib;
@@ -22,13 +21,15 @@ public class Question {
         answer = new Answer(answer_from_sib);
     }
 
+    // Получение идентификатора вопроса из ИП
     String getUri(){
         return uri;
     }
+    // Получение вопроса
     String getDescription(){
         return description;
     }
-
+    // Получение ответа
     public Answer getAnswer() {
         return answer;
     }

@@ -14,11 +14,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 
-public class QuestionnaireActivity extends AppCompatActivity {
+import java.util.LinkedList;
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+public class QuestionnaireActivity extends MainActivity {
+
+    RecyclerView mRecyclerView;
+    RecyclerView.Adapter mAdapter;
+    RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        String[] myDataset = {"1", "2", "3", "4", "5"};
-        mAdapter = new DichotomousAdapter(myDataset);
+        LinkedList <Question> MyQuestion = questionnaire.getQuestions();
+        mAdapter = new RecyclerViewAdapter(MyQuestion);
         mRecyclerView.setAdapter(mAdapter);
     }
 }
