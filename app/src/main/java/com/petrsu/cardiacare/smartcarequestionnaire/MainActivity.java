@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {// Questionnaire
                 Intent intentq = new Intent(MainActivity.this, QuestionnaireActivity.class);// Questionnaire
                 startActivity(intentq);// Questionnaire
+
             }// Questionaire
         });// Questionnaire
     }

@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            description = (TextView) itemView.findViewById(R.id.DichotomousQuestion);
+            description = (TextView) itemView.findViewById(R.id.recyclerViewItemName);
         }
     }
 
