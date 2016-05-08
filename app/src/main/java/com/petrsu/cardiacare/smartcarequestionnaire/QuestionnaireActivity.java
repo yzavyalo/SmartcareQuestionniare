@@ -16,7 +16,7 @@ import android.view.LayoutInflater;
 
 import java.util.LinkedList;
 
-public class QuestionnaireActivity extends MainActivity {
+public class QuestionnaireActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
@@ -40,6 +40,8 @@ public class QuestionnaireActivity extends MainActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
+        Questionnaire questionnaire = MainActivity.getQuesionaire();
+
         LinkedList <Question> MyQuestion = questionnaire.getQuestions();
         mAdapter = new RecyclerViewAdapter(MyQuestion);
         mRecyclerView.setAdapter(mAdapter);

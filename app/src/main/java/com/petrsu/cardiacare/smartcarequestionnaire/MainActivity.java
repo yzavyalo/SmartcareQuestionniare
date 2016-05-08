@@ -25,12 +25,12 @@ import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
-
 public class MainActivity extends AppCompatActivity {
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
+
     private GoogleApiClient client;
 
     public MainActivity() {
@@ -269,5 +269,9 @@ public class MainActivity extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    public static Questionnaire getQuesionaire(){
+        return questionnaire;
     }
 }
