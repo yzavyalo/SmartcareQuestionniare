@@ -18,9 +18,9 @@ import java.util.LinkedList;
 
 public class QuestionnaireActivity extends AppCompatActivity {
 
-    RecyclerView RecyclerView;
-    RecyclerView.Adapter Adapter;
-    RecyclerView.LayoutManager LayoutManager;
+    RecyclerView QuestionnaireRecyclerView;
+    RecyclerView.Adapter QuestionnaireAdapter;
+    RecyclerView.LayoutManager QuestionnaireLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,22 +29,15 @@ public class QuestionnaireActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        QuestionnaireRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        RecyclerView.setHasFixedSize(true);
+        QuestionnaireRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
-        LayoutManager = new LinearLayoutManager(this);
-        RecyclerView.setLayoutManager(LayoutManager);
+        QuestionnaireLayoutManager= new LinearLayoutManager(this);
+        QuestionnaireRecyclerView.setLayoutManager(QuestionnaireLayoutManager);
 
-        // specify an adapter (see also next example)
-        Questionnaire questionnaire = MainActivity.getQuesionaire();
-
-        LinkedList <Question> MyQuestion = questionnaire.getQuestions();
-        Adapter = new RecyclerViewAdapter(MyQuestion);
-        RecyclerView.setAdapter(Adapter);
+        QuestionnaireAdapter = new RecyclerViewAdapter(MainActivity.questionnaire.getQuestions());
+        QuestionnaireRecyclerView.setAdapter(QuestionnaireAdapter);
     }
 }
 
