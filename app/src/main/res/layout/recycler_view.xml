@@ -9,7 +9,6 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.petrsu.cardiacare.smartcarequestionnaire.QuestionnaireActivity"
     tools:showIn="@layout/activity_questionnaire">
 
     <android.support.v7.widget.RecyclerView
