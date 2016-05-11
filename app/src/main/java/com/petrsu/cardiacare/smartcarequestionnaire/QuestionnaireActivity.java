@@ -45,7 +45,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 case "Multiplechoice":
                     Types[i] = RecyclerViewAdapter.Multiplechoice;
                     break;
-                case "SingleChoice":
+                case "SingleChoise":
                     Types[i] = RecyclerViewAdapter.Singlechoice;
                     break;
                 case "BipolarQuestion":

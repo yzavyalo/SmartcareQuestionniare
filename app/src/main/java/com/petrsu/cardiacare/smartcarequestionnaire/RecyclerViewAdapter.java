@@ -41,11 +41,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.dichotomous_card, viewGroup, false);
             a = new DichotomousViewHolder(v);
             return a;
+        } else if (Type == Singlechoice){
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
+            a = new SingleChoiceViewHolder(v);
+            return a;
         } else {
-            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.dichotomous_card, viewGroup, false);
-            a = new DichotomousViewHolder(v);
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
+            a = new SingleChoiceViewHolder(v);
             return a;
         }
+
             /*
             case Tekst:
                 v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tekst_card, viewGroup, false);
@@ -53,10 +58,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 break;
             case Multiplechoise:
                 v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.multiplechoice_card, viewGroup, false);
-                return new ViewHolder(v);
-                break;
-            case Singlechoice:
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singllechoice_card, viewGroup, false);
                 return new ViewHolder(v);
                 break;
             case Bipolarquestion:
@@ -92,6 +93,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Item = AI.get(2);
                 holder.DichotomousAnswer2.setText(Item.getItemText());
             }
+        } else if (viewHolder.getItemViewType() == Singlechoice) {
+            Question qst = Questions.get(position);
+            Answer A = qst.getAnswer();
+            LinkedList <AnswerItem> AI = A.getItems();
+            SingleChoiceViewHolder holder = (SingleChoiceViewHolder) viewHolder;
+            holder.SingleChoiceQuestion.setText(qst.getDescription());
+            if (AI.size() > 0) {
+                AnswerItem Item = AI.get(1);
+                holder.SingleChoiceAnswer1.setText(Item.getItemText());
+                Item = AI.get(2);
+                holder.SingleChoiceAnswer2.setText(Item.getItemText());
+            }
         }
     }
 
@@ -120,6 +133,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.DichotomousQuestion = (TextView) v.findViewById(R.id.DichotomousQuestion);
             this.DichotomousAnswer1 = (RadioButton) v.findViewById(R.id.DichotomousAnswer1);
             this.DichotomousAnswer2 = (RadioButton) v.findViewById(R.id.DichotomousAnswer2);
+        }
+    }
+
+    public class SingleChoiceViewHolder extends ViewHolder {
+        TextView SingleChoiceQuestion;
+        RadioButton SingleChoiceAnswer1, SingleChoiceAnswer2;
+
+        public SingleChoiceViewHolder(View v) {
+            super(v);
+            this.SingleChoiceQuestion = (TextView) v.findViewById(R.id.SingleChoiceQuestion);
+            this.SingleChoiceAnswer1 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer1);
+            this.SingleChoiceAnswer2 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer2);
         }
     }
 
