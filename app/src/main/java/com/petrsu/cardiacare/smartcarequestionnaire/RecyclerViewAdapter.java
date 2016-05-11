@@ -36,19 +36,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int Type) {
         View v;
-        ViewHolder a;
         if (Type == Dichotomous) {
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.dichotomous_card, viewGroup, false);
-            a = new DichotomousViewHolder(v);
-            return a;
+            return new DichotomousViewHolder(v);
         } else if (Type == Singlechoice){
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
-            a = new SingleChoiceViewHolder(v);
-            return a;
+            return new SingleChoiceViewHolder(v);
         } else {
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
-            a = new SingleChoiceViewHolder(v);
-            return a;
+            return new SingleChoiceViewHolder(v);
         }
 
             /*
