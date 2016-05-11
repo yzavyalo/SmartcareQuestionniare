@@ -1,6 +1,7 @@
 package com.petrsu.cardiacare.smartcarequestionnaire;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Question Question = Questions.get(i);
-        viewHolder.description.setText(Question.getDescription());
+        Log.i("SS", "int " + i);
+        Log.i("SS", "int " + Questions.get(i).getDescription());
+        Question question = Questions.get(i);
+        viewHolder.description.setText(question.getDescription());
     }
 
     @Override
@@ -42,7 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            description = (TextView) itemView.findViewById(R.id.recyclerViewItemName);
+            description = (TextView) itemView.findViewById(R.id.DichotomousQuestion);
         }
     }
 
