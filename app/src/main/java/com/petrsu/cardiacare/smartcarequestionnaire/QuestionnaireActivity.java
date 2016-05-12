@@ -39,7 +39,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
             Question qst = q.get(i);
             Answer a = qst.getAnswer();
             switch(a.getType()) {
-                case "Tekst":
+                case "Text":
                     Types[i] = RecyclerViewAdapter.Tekst;
                     break;
                 case "Multiplechoice":

@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+        questionnaire = getQuestionnaire(nodeDescriptor);
+        printQuestionnaire(questionnaire);
+/*
         Button loadFromSS = (Button)findViewById(R.id.buttonSSLoad);
         loadFromSS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 printQuestionnaire(questionnaire);
             }
         });
-
+*/
         Button saveToJson = (Button)findViewById(R.id.buttonSJson);
         saveToJson.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +119,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentq);// About
             }// About
         });// About
+
+        //ButtonExit
+        Button ButtonExit; // Exit
+        ButtonExit = (Button) findViewById(R.id.ButtonExit);// Exit
+        ButtonExit.setOnClickListener(new View.OnClickListener() {// About
+            @Override // About
+            public void onClick(View v) {// Exit
+                finish();
+            }// About
+        });// Exit
 
         Button QuestionnaireLoad; // QuestionnaireActivity
         QuestionnaireLoad = (Button) findViewById(R.id.QuestionnaireLoad);// Questionnaire

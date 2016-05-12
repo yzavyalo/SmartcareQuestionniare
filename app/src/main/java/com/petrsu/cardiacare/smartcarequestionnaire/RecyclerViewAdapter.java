@@ -42,6 +42,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else if (Type == Singlechoice){
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
             return new SingleChoiceViewHolder(v);
+        } else if (Type == Tekst){
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tekst_card, viewGroup, false);
+            return new TekstViewHolder(v);
         } else {
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
             return new SingleChoiceViewHolder(v);
@@ -80,7 +83,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (viewHolder.getItemViewType() == Dichotomous) {
             Question qst = Questions.get(position);
             Answer A = qst.getAnswer();
-            LinkedList <AnswerItem> AI = A.getItems();
+            LinkedList<AnswerItem> AI = A.getItems();
             DichotomousViewHolder holder = (DichotomousViewHolder) viewHolder;
             holder.DichotomousQuestion.setText(qst.getDescription());
             if (AI.size() > 0) {
@@ -92,7 +95,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else if (viewHolder.getItemViewType() == Singlechoice) {
             Question qst = Questions.get(position);
             Answer A = qst.getAnswer();
-            LinkedList <AnswerItem> AI = A.getItems();
+            LinkedList<AnswerItem> AI = A.getItems();
             SingleChoiceViewHolder holder = (SingleChoiceViewHolder) viewHolder;
             holder.SingleChoiceQuestion.setText(qst.getDescription());
             if (AI.size() > 0) {
@@ -101,6 +104,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Item = AI.get(2);
                 holder.SingleChoiceAnswer2.setText(Item.getItemText());
             }
+        } else if (viewHolder.getItemViewType() == Tekst) {
+            Question qst = Questions.get(position);
+            TekstViewHolder holder = (TekstViewHolder) viewHolder;
+            holder.TekstQuestion.setText(qst.getDescription());
         }
     }
 
@@ -143,5 +150,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.SingleChoiceAnswer2 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer2);
         }
     }
+    /*
+    *Text Question
+     */
+    public class TekstViewHolder extends ViewHolder {
+        TextView TekstQuestion;
 
+        public TekstViewHolder(View v) {
+            super(v);
+            this.TekstQuestion = (TextView) v.findViewById(R.id.TekstQuestion);
+        }
+    }
 }
