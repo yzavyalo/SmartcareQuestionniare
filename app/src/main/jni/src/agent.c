@@ -181,7 +181,7 @@ int kp_get_subanswer(JNIEnv* env, jobject *answer_item, sslog_node_t *node_ss, s
     char* uri = sslog_entity_get_uri(item);
     sslog_triple_t *req_triple = sslog_new_triple_detached(
             uri,
-            "http://www.semanticweb.org/cardiacare/ontologies/2016/1/untitled-ontology-35#subAnswer",
+            "http://oss.fruct.org/smartcare#subAnswer",
             SS_RDF_SIB_ANY,
             SS_RDF_TYPE_URI, SS_RDF_TYPE_URI);
 
@@ -303,7 +303,7 @@ int kp_get_answer_items(JNIEnv* env, jobject *answer, sslog_node_t *node_ss, ssl
     char* answer_uri = answer_uri_from_triple->subject;
 
     char* rdf_property = NULL;
-    char* rdf_ontology = "http://www.semanticweb.org/cardiacare/ontologies/2016/1/untitled-ontology-35#";
+    char* rdf_ontology = "http://oss.fruct.org/smartcare#";
     int result = asprintf(&rdf_property, "%s%s", rdf_ontology, answer_type);
     if (result == -1) rdf_property = NULL;
 

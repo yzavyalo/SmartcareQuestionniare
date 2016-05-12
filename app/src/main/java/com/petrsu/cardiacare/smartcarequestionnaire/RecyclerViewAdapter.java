@@ -1,14 +1,12 @@
 package com.petrsu.cardiacare.smartcarequestionnaire;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import java.sql.Types;
 import java.util.LinkedList;
 
 /**
@@ -87,9 +85,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             DichotomousViewHolder holder = (DichotomousViewHolder) viewHolder;
             holder.DichotomousQuestion.setText(qst.getDescription());
             if (AI.size() > 0) {
-                AnswerItem Item = AI.get(1);
+                AnswerItem Item = AI.get(0);
                 holder.DichotomousAnswer1.setText(Item.getItemText());
-                Item = AI.get(2);
+                Item = AI.get(1);
                 holder.DichotomousAnswer2.setText(Item.getItemText());
             }
         } else if (viewHolder.getItemViewType() == Singlechoice) {
@@ -99,9 +97,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             SingleChoiceViewHolder holder = (SingleChoiceViewHolder) viewHolder;
             holder.SingleChoiceQuestion.setText(qst.getDescription());
             if (AI.size() > 0) {
-                AnswerItem Item = AI.get(1);
+                AnswerItem Item = AI.get(0);
                 holder.SingleChoiceAnswer1.setText(Item.getItemText());
-                Item = AI.get(2);
+                Item = AI.get(1);
                 holder.SingleChoiceAnswer2.setText(Item.getItemText());
             }
         } else if (viewHolder.getItemViewType() == Tekst) {
