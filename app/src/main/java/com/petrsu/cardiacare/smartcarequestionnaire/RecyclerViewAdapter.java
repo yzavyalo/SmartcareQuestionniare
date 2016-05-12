@@ -1,6 +1,7 @@
 package com.petrsu.cardiacare.smartcarequestionnaire;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static final int Likertscale = 5;
     public static final int Continuousscale = 6;
     public static final int Dichotomous = 7;
+    public static final int DefaultValue = 8;
 
     public RecyclerViewAdapter(LinkedList <Question> Questions, int[] Types) {
         this.Questions = Questions;

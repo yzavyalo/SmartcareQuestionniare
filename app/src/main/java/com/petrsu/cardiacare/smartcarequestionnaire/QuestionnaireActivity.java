@@ -42,7 +42,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 case "Text":
                     Types[i] = RecyclerViewAdapter.Tekst;
                     break;
-                case "Multiplechoice":
+                case "MultipleChoise":
                     Types[i] = RecyclerViewAdapter.Multiplechoice;
                     break;
                 case "SingleChoise":
@@ -63,6 +63,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 case "ContinuousScale":
                     Types[i] = RecyclerViewAdapter.Continuousscale;
                     break;
+                default:
+                    Types[i] = RecyclerViewAdapter.DefaultValue;
             }
         }
 
