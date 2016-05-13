@@ -2,8 +2,8 @@ package com.petrsu.cardiacare.smartcarequestionnaire;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +15,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
+import com.petrsu.cardiacare.smartcare.*;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -23,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.LinkedList;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -46,13 +46,10 @@ public class MainActivity extends AppCompatActivity {
     /*
     * Common functions for interaction with SmartSpace
      */
-    public native long connectSmartSpace(String name, String ip, int port);
 
-    public native void disconnectSmartSpace(long nodeDescriptor);
-
-    public native Questionnaire getQuestionnaire(long nodeDescriptor);
 
     static protected long nodeDescriptor;
+    SmartCare smart;
     // Native code part end
     static protected Questionnaire questionnaire;
     Toolbar mToolbar;
@@ -65,13 +62,14 @@ public class MainActivity extends AppCompatActivity {
         /*****************************
          * SS init
          *****************************/
-        nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
+        smart = new SmartCare();
+        nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
         setRegisteredActivity();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-        questionnaire = getQuestionnaire(nodeDescriptor);
+        questionnaire = smart.getQuestionnaire(nodeDescriptor);
         printQuestionnaire(questionnaire);
 /*
         Button loadFromSS = (Button)findViewById(R.id.buttonSSLoad);
@@ -241,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(true);
         super.onDestroy();
 
-        disconnectSmartSpace(nodeDescriptor);
+        smart.disconnectSmartSpace(nodeDescriptor);
         System.exit(0);
     }
 
@@ -285,7 +283,4 @@ public class MainActivity extends AppCompatActivity {
         client.disconnect();
     }
 
-    public static Questionnaire getQuesionaire(){
-        return questionnaire;
-    }
 }

@@ -1,4 +1,4 @@
-package com.petrsu.cardiacare.smartcarequestionnaire;
+package com.petrsu.cardiacare.smartcare;
 
 import java.util.LinkedList;
 
@@ -24,7 +24,9 @@ public class Questionnaire {
         questions.addLast(question);
     }
     // Получение списка вопросов
-     LinkedList <Question> getQuestions(){
+    public LinkedList <Question> getQuestions(){
          return questions;
      }
+
+
 }
