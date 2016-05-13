@@ -35,7 +35,7 @@
  *   Подключаемся к Интелектуальному пространству
  *  SmartSpace node initialization by hostname_, ip_,port
  */
-JNIEXPORT jlong JNICALL Java_com_petrsu_cardiacare_smartcarequestionnaire_MainActivity_connectSmartSpace( JNIEnv* env,
+JNIEXPORT jlong JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_connectSmartSpace( JNIEnv* env,
                                                   jobject thiz , jstring hostname, jstring ip, jint port) {
 
     const char *hostname_ = (*env)->GetStringUTFChars(env, hostname, NULL);
@@ -79,7 +79,7 @@ JNIEXPORT jlong JNICALL Java_com_petrsu_cardiacare_smartcarequestionnaire_MainAc
  *  Disconnect from smartspace
  *
  */
-JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcarequestionnaire_MainActivity_disconnectSmartSpace( JNIEnv* env,
+JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_disconnectSmartSpace( JNIEnv* env,
                                                   jobject thiz , jlong nodeDescriptor){
     int result = kp_disconnect_smartspace(nodeDescriptor);
 
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcarequestionnaire_MainAct
 }
 
 
-JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcarequestionnaire_MainActivity_getQuestionnaire
+JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_getQuestionnaire
         (JNIEnv* env, jobject thiz , jlong nodeDescriptor){
 
     sslog_node_t *node = (sslog_node_t *) nodeDescriptor;

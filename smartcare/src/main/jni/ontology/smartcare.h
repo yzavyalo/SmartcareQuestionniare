@@ -14,6 +14,7 @@ extern "C" {
 #define INCLUDE_ALL_ONT_ENTITIES 1
 #ifdef INCLUDE_ALL_ONT_ENTITIES
 
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #define INCLUDE_PROPERTY_HASSTATIONAREQUIPMENT 1
 #define INCLUDE_PROPERTY_TAKEDRUGTIME 1
 #define INCLUDE_PROPERTY_HASPATIENTMAP 1
@@ -166,6 +167,63 @@ extern "C" {
 #define INCLUDE_CLASS_QUESTION 1
 #define INCLUDE_CLASS_EQUIPMENT 1
 #define INCLUDE_CLASS_DRUG 1
+=======
+#define INCLUDE_PROPERTY_RESPONSEFILEURI 1
+#define INCLUDE_PROPERTY_CONTAINSSUBRESPONSE 1
+#define INCLUDE_PROPERTY_NEXTQUESTION 1
+#define INCLUDE_PROPERTY_HASFEEDBACK 1
+#define INCLUDE_PROPERTY_HASQUESTION 1
+#define INCLUDE_PROPERTY_DESCRIPTION 1
+#define INCLUDE_PROPERTY_LEFTBIPOLAR 1
+#define INCLUDE_PROPERTY_CONTAINSFILE 1
+#define INCLUDE_PROPERTY_RESPONSETEXT 1
+#define INCLUDE_PROPERTY_RANGINGITEM 1
+#define INCLUDE_PROPERTY_MULTIPLEITEM 1
+#define INCLUDE_PROPERTY_HASRESPONSE 1
+#define INCLUDE_PROPERTY_RESPONDEDTO 1
+#define INCLUDE_PROPERTY_ANWEREDTO 1
+#define INCLUDE_PROPERTY_ITEMSCORE 1
+#define INCLUDE_PROPERTY_CODE 1
+#define INCLUDE_PROPERTY_DICHOTOMOUSITEM 1
+#define INCLUDE_PROPERTY_FIRSTQUESTION 1
+#define INCLUDE_PROPERTY_HASANSWER 1
+#define INCLUDE_PROPERTY_HASRESPONSEITEM 1
+#define INCLUDE_PROPERTY_LINKEDWITHITEM 1
+#define INCLUDE_PROPERTY_CONTAINSTEXT 1
+#define INCLUDE_PROPERTY_ITEMTEXT 1
+#define INCLUDE_PROPERTY_SINGLEITEM 1
+#define INCLUDE_PROPERTY_SUBANSWER 1
+#define INCLUDE_PROPERTY_RIGHTBIPOLAR 1
+#define INCLUDE_CLASS_RANGINGSCALE 1
+#define INCLUDE_CLASS_QUESTIONNAIRE 1
+#define INCLUDE_CLASS_THING 1
+#define INCLUDE_CLASS_PHOTO 1
+#define INCLUDE_CLASS_RESPONSETEXT 1
+#define INCLUDE_CLASS_LIKERTSCALE 1
+#define INCLUDE_CLASS_AUDIO 1
+#define INCLUDE_CLASS_DICHOTOMOUS 1
+#define INCLUDE_CLASS_CONTINUOUSSCALE 1
+#define INCLUDE_CLASS_FILE 1
+#define INCLUDE_CLASS_CHOISE 1
+#define INCLUDE_CLASS_TEXT 1
+#define INCLUDE_CLASS_FEEDBACK 1
+#define INCLUDE_CLASS_ANSWER 1
+#define INCLUDE_CLASS_NOTHING 1
+#define INCLUDE_CLASS_MULTIPLECHOISE 1
+#define INCLUDE_CLASS_GUTTMANSCALE 1
+#define INCLUDE_CLASS_ITEM 1
+#define INCLUDE_CLASS_RESPONSEFILE 1
+#define INCLUDE_CLASS_NUMBER 1
+#define INCLUDE_CLASS_RESPONSE 1
+#define INCLUDE_CLASS_VIDEO 1
+#define INCLUDE_CLASS_DOCUMENT 1
+#define INCLUDE_CLASS_OPENANSWER 1
+#define INCLUDE_CLASS_QUESTION 1
+#define INCLUDE_CLASS_CLOSEDANSWER 1
+#define INCLUDE_CLASS_PHONE 1
+#define INCLUDE_CLASS_RESPONSEITEM 1
+#define INCLUDE_CLASS_PERSON 1
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #define INCLUDE_CLASS_SINGLECHOISE 1
 #define INCLUDE_CLASS_VALIDATED 1
 #define INCLUDE_CLASS_EMAIL 1
@@ -174,6 +232,7 @@ extern "C" {
 
 #else
 
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #define INCLUDE_PROPERTY_HASSTATIONAREQUIPMENT 0
 #define INCLUDE_PROPERTY_TAKEDRUGTIME 0
 #define INCLUDE_PROPERTY_HASPATIENTMAP 0
@@ -326,6 +385,63 @@ extern "C" {
 #define INCLUDE_CLASS_QUESTION 0
 #define INCLUDE_CLASS_EQUIPMENT 0
 #define INCLUDE_CLASS_DRUG 0
+=======
+#define INCLUDE_PROPERTY_RESPONSEFILEURI 0
+#define INCLUDE_PROPERTY_CONTAINSSUBRESPONSE 0
+#define INCLUDE_PROPERTY_NEXTQUESTION 0
+#define INCLUDE_PROPERTY_HASFEEDBACK 0
+#define INCLUDE_PROPERTY_HASQUESTION 0
+#define INCLUDE_PROPERTY_DESCRIPTION 0
+#define INCLUDE_PROPERTY_LEFTBIPOLAR 0
+#define INCLUDE_PROPERTY_CONTAINSFILE 0
+#define INCLUDE_PROPERTY_RESPONSETEXT 0
+#define INCLUDE_PROPERTY_RANGINGITEM 0
+#define INCLUDE_PROPERTY_MULTIPLEITEM 0
+#define INCLUDE_PROPERTY_HASRESPONSE 0
+#define INCLUDE_PROPERTY_RESPONDEDTO 0
+#define INCLUDE_PROPERTY_ANWEREDTO 0
+#define INCLUDE_PROPERTY_ITEMSCORE 0
+#define INCLUDE_PROPERTY_CODE 0
+#define INCLUDE_PROPERTY_DICHOTOMOUSITEM 0
+#define INCLUDE_PROPERTY_FIRSTQUESTION 0
+#define INCLUDE_PROPERTY_HASANSWER 0
+#define INCLUDE_PROPERTY_HASRESPONSEITEM 0
+#define INCLUDE_PROPERTY_LINKEDWITHITEM 0
+#define INCLUDE_PROPERTY_CONTAINSTEXT 0
+#define INCLUDE_PROPERTY_ITEMTEXT 0
+#define INCLUDE_PROPERTY_SINGLEITEM 0
+#define INCLUDE_PROPERTY_SUBANSWER 0
+#define INCLUDE_PROPERTY_RIGHTBIPOLAR 0
+#define INCLUDE_CLASS_RANGINGSCALE 0
+#define INCLUDE_CLASS_QUESTIONNAIRE 0
+#define INCLUDE_CLASS_THING 0
+#define INCLUDE_CLASS_PHOTO 0
+#define INCLUDE_CLASS_RESPONSETEXT 0
+#define INCLUDE_CLASS_LIKERTSCALE 0
+#define INCLUDE_CLASS_AUDIO 0
+#define INCLUDE_CLASS_DICHOTOMOUS 0
+#define INCLUDE_CLASS_CONTINUOUSSCALE 0
+#define INCLUDE_CLASS_FILE 0
+#define INCLUDE_CLASS_CHOISE 0
+#define INCLUDE_CLASS_TEXT 0
+#define INCLUDE_CLASS_FEEDBACK 0
+#define INCLUDE_CLASS_ANSWER 0
+#define INCLUDE_CLASS_NOTHING 0
+#define INCLUDE_CLASS_MULTIPLECHOISE 0
+#define INCLUDE_CLASS_GUTTMANSCALE 0
+#define INCLUDE_CLASS_ITEM 0
+#define INCLUDE_CLASS_RESPONSEFILE 0
+#define INCLUDE_CLASS_NUMBER 0
+#define INCLUDE_CLASS_RESPONSE 0
+#define INCLUDE_CLASS_VIDEO 0
+#define INCLUDE_CLASS_DOCUMENT 0
+#define INCLUDE_CLASS_OPENANSWER 0
+#define INCLUDE_CLASS_QUESTION 0
+#define INCLUDE_CLASS_CLOSEDANSWER 0
+#define INCLUDE_CLASS_PHONE 0
+#define INCLUDE_CLASS_RESPONSEITEM 0
+#define INCLUDE_CLASS_PERSON 0
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #define INCLUDE_CLASS_SINGLECHOISE 0
 #define INCLUDE_CLASS_VALIDATED 0
 #define INCLUDE_CLASS_EMAIL 0
@@ -344,6 +460,7 @@ extern sslog_class_t *CLASS_QUESTIONNAIRE;
 #if INCLUDE_CLASS_THING
 extern sslog_class_t *CLASS_THING;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_CLASS_ALARM
 extern sslog_class_t *CLASS_ALARM;
 #endif
@@ -376,6 +493,10 @@ extern sslog_class_t *CLASS_RESPONSEFILE;
 #endif
 #if INCLUDE_CLASS_RESPONSE
 extern sslog_class_t *CLASS_RESPONSE;
+=======
+#if INCLUDE_CLASS_PHOTO
+extern sslog_class_t *CLASS_PHOTO;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
 #if INCLUDE_CLASS_DOCUMENT
 extern sslog_class_t *CLASS_DOCUMENT;
@@ -398,9 +519,10 @@ extern sslog_class_t *CLASS_PHONE;
 #if INCLUDE_CLASS_AMBULANCE
 extern sslog_class_t *CLASS_AMBULANCE;
 #endif
-#if INCLUDE_CLASS_CLOSEDANSWER
-extern sslog_class_t *CLASS_CLOSEDANSWER;
+#if INCLUDE_CLASS_LIKERTSCALE
+extern sslog_class_t *CLASS_LIKERTSCALE;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_CLASS_RESPONSEITEM
 extern sslog_class_t *CLASS_RESPONSEITEM;
 #endif
@@ -428,12 +550,21 @@ extern sslog_class_t *CLASS_LIKERTSCALE;
 #if INCLUDE_CLASS_AUDIO
 extern sslog_class_t *CLASS_AUDIO;
 #endif
+=======
+#if INCLUDE_CLASS_AUDIO
+extern sslog_class_t *CLASS_AUDIO;
+#endif
+#if INCLUDE_CLASS_DICHOTOMOUS
+extern sslog_class_t *CLASS_DICHOTOMOUS;
+#endif
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #if INCLUDE_CLASS_CONTINUOUSSCALE
 extern sslog_class_t *CLASS_CONTINUOUSSCALE;
 #endif
 #if INCLUDE_CLASS_FILE
 extern sslog_class_t *CLASS_FILE;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_CLASS_ADVICE
 extern sslog_class_t *CLASS_ADVICE;
 #endif
@@ -442,6 +573,16 @@ extern sslog_class_t *CLASS_TEXT;
 #endif
 #if INCLUDE_CLASS_MEDICALRECORDSCARD
 extern sslog_class_t *CLASS_MEDICALRECORDSCARD;
+=======
+#if INCLUDE_CLASS_CHOISE
+extern sslog_class_t *CLASS_CHOISE;
+#endif
+#if INCLUDE_CLASS_TEXT
+extern sslog_class_t *CLASS_TEXT;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
+#endif
+#if INCLUDE_CLASS_ANSWER
+extern sslog_class_t *CLASS_ANSWER;
 #endif
 #if INCLUDE_CLASS_ANSWER
 extern sslog_class_t *CLASS_ANSWER;
@@ -451,10 +592,17 @@ extern sslog_class_t *CLASS_NOTHING;
 #endif
 #if INCLUDE_CLASS_MULTIPLECHOISE
 extern sslog_class_t *CLASS_MULTIPLECHOISE;
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
+=======
+#endif
+#if INCLUDE_CLASS_GUTTMANSCALE
+extern sslog_class_t *CLASS_GUTTMANSCALE;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
 #if INCLUDE_CLASS_ITEM
 extern sslog_class_t *CLASS_ITEM;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_CLASS_HOSPITAL
 extern sslog_class_t *CLASS_HOSPITAL;
 #endif
@@ -472,10 +620,18 @@ extern sslog_class_t *CLASS_VIDEO;
 #endif
 #if INCLUDE_CLASS_DISEASE
 extern sslog_class_t *CLASS_DISEASE;
+=======
+#if INCLUDE_CLASS_RESPONSEFILE
+extern sslog_class_t *CLASS_RESPONSEFILE;
+#endif
+#if INCLUDE_CLASS_NUMBER
+extern sslog_class_t *CLASS_NUMBER;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
 #if INCLUDE_CLASS_ECGSERVEY
 extern sslog_class_t *CLASS_ECGSERVEY;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_CLASS_OPENANSWER
 extern sslog_class_t *CLASS_OPENANSWER;
 #endif
@@ -490,10 +646,27 @@ extern sslog_class_t *CLASS_EQUIPMENT;
 #endif
 #if INCLUDE_CLASS_DRUG
 extern sslog_class_t *CLASS_DRUG;
+=======
+#if INCLUDE_CLASS_VIDEO
+extern sslog_class_t *CLASS_VIDEO;
+#endif
+#if INCLUDE_CLASS_DOCUMENT
+extern sslog_class_t *CLASS_DOCUMENT;
+#endif
+#if INCLUDE_CLASS_OPENANSWER
+extern sslog_class_t *CLASS_OPENANSWER;
+#endif
+#if INCLUDE_CLASS_QUESTION
+extern sslog_class_t *CLASS_QUESTION;
+#endif
+#if INCLUDE_CLASS_CLOSEDANSWER
+extern sslog_class_t *CLASS_CLOSEDANSWER;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
 #if INCLUDE_CLASS_SINGLECHOISE
 extern sslog_class_t *CLASS_SINGLECHOISE;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_CLASS_VALIDATED
 extern sslog_class_t *CLASS_VALIDATED;
 #endif
@@ -639,10 +812,27 @@ extern sslog_property_t *PROPERTY_DRUGANNOTATION;
 #endif
 #if INCLUDE_PROPERTY_PATIENTBLOODTYPE
 extern sslog_property_t *PROPERTY_PATIENTBLOODTYPE;
+=======
+#if INCLUDE_CLASS_RESPONSEITEM
+extern sslog_class_t *CLASS_RESPONSEITEM;
 #endif
-#if INCLUDE_PROPERTY_ITEMSCORE
-extern sslog_property_t *PROPERTY_ITEMSCORE;
+#if INCLUDE_CLASS_PERSON
+extern sslog_class_t *CLASS_PERSON;
 #endif
+#if INCLUDE_CLASS_SINGLECHOISE
+extern sslog_class_t *CLASS_SINGLECHOISE;
+#endif
+#if INCLUDE_CLASS_VALIDATED
+extern sslog_class_t *CLASS_VALIDATED;
+#endif
+#if INCLUDE_CLASS_EMAIL
+extern sslog_class_t *CLASS_EMAIL;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
+#endif
+#if INCLUDE_CLASS_BIPOLARQUESTION
+extern sslog_class_t *CLASS_BIPOLARQUESTION;
+#endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_PROPERTY_PHARMNAME
 extern sslog_property_t *PROPERTY_PHARMNAME;
 #endif
@@ -660,16 +850,28 @@ extern sslog_property_t *PROPERTY_SURVEYECGINFO;
 #endif
 #if INCLUDE_PROPERTY_CONTAINUSHSURVEYS
 extern sslog_property_t *PROPERTY_CONTAINUSHSURVEYS;
+=======
+
+
+#if INCLUDE_PROPERTY_RESPONSEFILEURI
+extern sslog_property_t *PROPERTY_RESPONSEFILEURI;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
-#if INCLUDE_PROPERTY_SINGLEITEM
-extern sslog_property_t *PROPERTY_SINGLEITEM;
+#if INCLUDE_PROPERTY_CONTAINSSUBRESPONSE
+extern sslog_property_t *PROPERTY_CONTAINSSUBRESPONSE;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_PROPERTY_HASAMBLOCATION
 extern sslog_property_t *PROPERTY_HASAMBLOCATION;
+=======
+#if INCLUDE_PROPERTY_NEXTQUESTION
+extern sslog_property_t *PROPERTY_NEXTQUESTION;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
 #if INCLUDE_PROPERTY_DISEASEDESCRIPTION
 extern sslog_property_t *PROPERTY_DISEASEDESCRIPTION;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_PROPERTY_HASDRUGTOSALE
 extern sslog_property_t *PROPERTY_HASDRUGTOSALE;
 #endif
@@ -696,13 +898,45 @@ extern sslog_property_t *PROPERTY_PHONE;
 #endif
 #if INCLUDE_PROPERTY_SUBANSWER
 extern sslog_property_t *PROPERTY_SUBANSWER;
+=======
+#if INCLUDE_PROPERTY_HASQUESTION
+extern sslog_property_t *PROPERTY_HASQUESTION;
+#endif
+#if INCLUDE_PROPERTY_DESCRIPTION
+extern sslog_property_t *PROPERTY_DESCRIPTION;
+#endif
+#if INCLUDE_PROPERTY_LEFTBIPOLAR
+extern sslog_property_t *PROPERTY_LEFTBIPOLAR;
+#endif
+#if INCLUDE_PROPERTY_CONTAINSFILE
+extern sslog_property_t *PROPERTY_CONTAINSFILE;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
+#endif
+#if INCLUDE_PROPERTY_RESPONSETEXT
+extern sslog_property_t *PROPERTY_RESPONSETEXT;
 #endif
 #if INCLUDE_PROPERTY_RANGINGITEM
 extern sslog_property_t *PROPERTY_RANGINGITEM;
 #endif
+#if INCLUDE_PROPERTY_MULTIPLEITEM
+extern sslog_property_t *PROPERTY_MULTIPLEITEM;
+#endif
+#if INCLUDE_PROPERTY_HASRESPONSE
+extern sslog_property_t *PROPERTY_HASRESPONSE;
+#endif
+#if INCLUDE_PROPERTY_RESPONDEDTO
+extern sslog_property_t *PROPERTY_RESPONDEDTO;
+#endif
+#if INCLUDE_PROPERTY_ANWEREDTO
+extern sslog_property_t *PROPERTY_ANWEREDTO;
+#endif
+#if INCLUDE_PROPERTY_ITEMSCORE
+extern sslog_property_t *PROPERTY_ITEMSCORE;
+#endif
 #if INCLUDE_PROPERTY_CODE
 extern sslog_property_t *PROPERTY_CODE;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_PROPERTY_RESPONDEDTO
 extern sslog_property_t *PROPERTY_RESPONDEDTO;
 #endif
@@ -759,10 +993,15 @@ extern sslog_property_t *PROPERTY_LAT;
 #endif
 #if INCLUDE_PROPERTY_SURNAME
 extern sslog_property_t *PROPERTY_SURNAME;
+=======
+#if INCLUDE_PROPERTY_DICHOTOMOUSITEM
+extern sslog_property_t *PROPERTY_DICHOTOMOUSITEM;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
-#if INCLUDE_PROPERTY_HASRESPONSE
-extern sslog_property_t *PROPERTY_HASRESPONSE;
+#if INCLUDE_PROPERTY_FIRSTQUESTION
+extern sslog_property_t *PROPERTY_FIRSTQUESTION;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_PROPERTY_DOCUMENTRELEASEDATE
 extern sslog_property_t *PROPERTY_DOCUMENTRELEASEDATE;
 #endif
@@ -771,10 +1010,24 @@ extern sslog_property_t *PROPERTY_PERSONINFORMATION;
 #endif
 #if INCLUDE_PROPERTY_AUTHREQUESTSTATUS
 extern sslog_property_t *PROPERTY_AUTHREQUESTSTATUS;
+=======
+#if INCLUDE_PROPERTY_HASANSWER
+extern sslog_property_t *PROPERTY_HASANSWER;
+#endif
+#if INCLUDE_PROPERTY_HASRESPONSEITEM
+extern sslog_property_t *PROPERTY_HASRESPONSEITEM;
+#endif
+#if INCLUDE_PROPERTY_LINKEDWITHITEM
+extern sslog_property_t *PROPERTY_LINKEDWITHITEM;
+#endif
+#if INCLUDE_PROPERTY_CONTAINSTEXT
+extern sslog_property_t *PROPERTY_CONTAINSTEXT;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
 #if INCLUDE_PROPERTY_RESPONSETEXT
 extern sslog_property_t *PROPERTY_RESPONSETEXT;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_PROPERTY_PASSWORD
 extern sslog_property_t *PROPERTY_PASSWORD;
 #endif
@@ -783,10 +1036,15 @@ extern sslog_property_t *PROPERTY_MBOX;
 #endif
 #if INCLUDE_PROPERTY_HASPORTABLEEQUIPMENT
 extern sslog_property_t *PROPERTY_HASPORTABLEEQUIPMENT;
+=======
+#if INCLUDE_PROPERTY_SINGLEITEM
+extern sslog_property_t *PROPERTY_SINGLEITEM;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
-#if INCLUDE_PROPERTY_NEXTQUESTION
-extern sslog_property_t *PROPERTY_NEXTQUESTION;
+#if INCLUDE_PROPERTY_SUBANSWER
+extern sslog_property_t *PROPERTY_SUBANSWER;
 #endif
+<<<<<<< HEAD:app/src/main/jni/ontology/smartcare.h
 #if INCLUDE_PROPERTY_WORKAMBULANCE
 extern sslog_property_t *PROPERTY_WORKAMBULANCE;
 #endif
@@ -804,6 +1062,10 @@ extern sslog_property_t *PROPERTY_SERVEYUSHINFO;
 #endif
 #if INCLUDE_PROPERTY_CONTAINDISEASES
 extern sslog_property_t *PROPERTY_CONTAINDISEASES;
+=======
+#if INCLUDE_PROPERTY_RIGHTBIPOLAR
+extern sslog_property_t *PROPERTY_RIGHTBIPOLAR;
+>>>>>>> students:smartcare/src/main/jni/ontology/smartcare.h
 #endif
 
 

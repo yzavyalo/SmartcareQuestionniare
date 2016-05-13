@@ -46,5 +46,8 @@
     <string name="sign">Sign in</string>
 
     <string name="menu_refresh">Refresh</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_questionaire">Questionaire</string>
+    <string name="title_activity_questionnaire">Questionnaire</string>
 
 </resources>

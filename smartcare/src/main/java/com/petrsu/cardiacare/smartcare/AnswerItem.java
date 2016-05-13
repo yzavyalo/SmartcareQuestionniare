@@ -1,4 +1,4 @@
-package com.petrsu.cardiacare.smartcarequestionnaire;
+package com.petrsu.cardiacare.smartcare;
 
 import java.util.LinkedList;
 
@@ -26,23 +26,25 @@ public class AnswerItem {
         this.subAnswers = item.subAnswers;
     }
 
+    // Добавить подответ в конец списка подответов
     public void addSubAnswer(Answer answer){
         Answer subAnswer = new Answer(answer);
         subAnswers.addLast(subAnswer);
     }
 
+    // Получение списка подответов
     public LinkedList<Answer> getSubAnswers() {
         return subAnswers;
     }
-
+    // Получение идентификатора варианта ответа в ИП
     public String getUri() {
         return uri;
     }
-
+    // Получение значимости варианта ответа
     public String getItemScore() {
         return itemScore;
     }
-
+    // Получение текста варианта ответа
     public String getItemText() {
         return itemText;
     }

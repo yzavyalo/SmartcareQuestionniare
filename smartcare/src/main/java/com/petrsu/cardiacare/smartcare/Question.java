@@ -1,8 +1,4 @@
-package com.petrsu.cardiacare.smartcarequestionnaire;
-
-import android.util.Log;
-
-import java.util.LinkedList;
+package com.petrsu.cardiacare.smartcare;
 
 /**
  * Created by Iuliia Zavialova on 09.03.16.
@@ -11,7 +7,6 @@ public class Question {
     private String uri;
     private String description;
     Answer answer;
-
 
     public Question(String uri_from_sib, String description_from_sib){
          this.uri = uri_from_sib;
@@ -22,13 +17,15 @@ public class Question {
         answer = new Answer(answer_from_sib);
     }
 
+    // Получение идентификатора вопроса из ИП
     String getUri(){
         return uri;
     }
-    String getDescription(){
+    // Получение вопроса
+    public String getDescription(){
         return description;
     }
-
+    // Получение ответа
     public Answer getAnswer() {
         return answer;
     }

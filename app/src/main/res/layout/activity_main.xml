@@ -10,18 +10,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Load from SmartSpace"
-        android:id="@+id/buttonSSLoad"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Save in Json"
         android:id="@+id/buttonSJson"
-        android:layout_below="@+id/buttonSSLoad"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toolbar" />
 
     <Button
         android:layout_width="wrap_content"
@@ -29,6 +21,30 @@
         android:text="Load from JSON"
         android:id="@+id/buttonLJson"
         android:layout_below="@+id/buttonSJson"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:id="@+id/AboutLoad"
+        android:layout_below="@+id/QuestionnaireLoad"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASS SURVEY"
+        android:id="@+id/QuestionnaireLoad"
+        android:layout_below="@+id/buttonLJson"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:id="@+id/ButtonExit"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
     <!--<android.support.v7.widget.RecyclerView-->

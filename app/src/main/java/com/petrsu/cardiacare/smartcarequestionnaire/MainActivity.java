@@ -2,8 +2,8 @@ package com.petrsu.cardiacare.smartcarequestionnaire;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +15,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
+import com.petrsu.cardiacare.smartcare.*;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -24,13 +25,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 
-
 public class MainActivity extends AppCompatActivity {
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
+
     private GoogleApiClient client;
 
     public MainActivity() {
@@ -46,15 +46,12 @@ public class MainActivity extends AppCompatActivity {
     /*
     * Common functions for interaction with SmartSpace
      */
-    public native long connectSmartSpace(String name, String ip, int port);
 
-    public native void disconnectSmartSpace(long nodeDescriptor);
-
-    public native Questionnaire getQuestionnaire(long nodeDescriptor);
 
     static protected long nodeDescriptor;
+    SmartCare smart;
     // Native code part end
-    Questionnaire questionnaire;
+    static protected Questionnaire questionnaire;
     Toolbar mToolbar;
     AccountStorage storage;
     String filename = "questionnaire.json";
@@ -65,25 +62,25 @@ public class MainActivity extends AppCompatActivity {
         /*****************************
          * SS init
          *****************************/
-        nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
-        if (nodeDescriptor == -1) {
-            return;
-        }
+        smart = new SmartCare();
+        nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
         setRegisteredActivity();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+        questionnaire = smart.getQuestionnaire(nodeDescriptor);
+        printQuestionnaire(questionnaire);
+/*
         Button loadFromSS = (Button)findViewById(R.id.buttonSSLoad);
         loadFromSS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 questionnaire = getQuestionnaire(nodeDescriptor);
                 printQuestionnaire(questionnaire);
-
             }
         });
-
+*/
         Button saveToJson = (Button)findViewById(R.id.buttonSJson);
         saveToJson.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,13 +99,45 @@ public class MainActivity extends AppCompatActivity {
                 String jasonFromFile = readSavedData();
                     Gson json = new Gson();
                     Questionnaire qst = json.fromJson(jasonFromFile,Questionnaire.class);
-                    printQuestionnaire(qst);
+                    questionnaire = qst;
+                    printQuestionnaire(questionnaire);
             }
         });
 
 
         storage = new AccountStorage();
         storage.sPref = getSharedPreferences(storage.ACCOUNT_PREFERENCES, MODE_PRIVATE);
+
+        Button AboutLoad; // About
+        AboutLoad = (Button) findViewById(R.id.AboutLoad);// About
+        AboutLoad.setOnClickListener(new View.OnClickListener() {// About
+            @Override // About
+            public void onClick(View v) {// About
+                Intent intentq = new Intent(MainActivity.this, AboutActivity.class);// About
+                startActivity(intentq);// About
+            }// About
+        });// About
+
+        //ButtonExit
+        Button ButtonExit; // Exit
+        ButtonExit = (Button) findViewById(R.id.ButtonExit);// Exit
+        ButtonExit.setOnClickListener(new View.OnClickListener() {// About
+            @Override // About
+            public void onClick(View v) {// Exit
+                finish();
+            }// About
+        });// Exit
+
+        Button QuestionnaireLoad; // QuestionnaireActivity
+        QuestionnaireLoad = (Button) findViewById(R.id.QuestionnaireLoad);// Questionnaire
+        QuestionnaireLoad.setOnClickListener(new View.OnClickListener() {// Questionaire
+            @Override // Questionaire
+            public void onClick(View v) {// Questionnaire
+                Intent intentq = new Intent(MainActivity.this, QuestionnaireActivity.class);// Questionnaire
+                startActivity(intentq);// Questionnaire
+
+            }// Questionaire
+        });// Questionnaire
 
     }
 
@@ -211,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(true);
         super.onDestroy();
 
-        disconnectSmartSpace(nodeDescriptor);
+        smart.disconnectSmartSpace(nodeDescriptor);
         System.exit(0);
     }
 
@@ -254,4 +283,5 @@ public class MainActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
 }
