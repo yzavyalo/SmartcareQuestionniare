@@ -36,11 +36,6 @@ public class MainActivity extends AppCompatActivity {
     public MainActivity() {
     }
 
-    // Native code part begin
-    static {
-        System.loadLibrary("smartcare");
-    }
-
     String TAG = "SS-main";
 
     /*
@@ -49,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     static protected long nodeDescriptor;
-    SmartCare smart;
+    SmartCareLibrary smart;
     // Native code part end
     static protected Questionnaire questionnaire;
     Toolbar mToolbar;
@@ -62,13 +57,15 @@ public class MainActivity extends AppCompatActivity {
         /*****************************
          * SS init
          *****************************/
-        smart = new SmartCare();
-        nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
+
         setRegisteredActivity();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+
+        smart = new SmartCareLibrary();
+        nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
         questionnaire = smart.getQuestionnaire(nodeDescriptor);
         printQuestionnaire(questionnaire);
 /*
@@ -96,11 +93,11 @@ public class MainActivity extends AppCompatActivity {
         loadFromJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String jasonFromFile = readSavedData();
-                    Gson json = new Gson();
-                    Questionnaire qst = json.fromJson(jasonFromFile,Questionnaire.class);
-                    questionnaire = qst;
-                    printQuestionnaire(questionnaire);
+//                String jsonFromFile = readSavedData();
+//                    Gson json = new Gson();
+//                    Questionnaire qst = json.fromJson(jsonFromFile,Questionnaire.class);
+//                    questionnaire = qst;
+//                    printQuestionnaire(questionnaire);
             }
         });
 

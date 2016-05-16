@@ -3,8 +3,8 @@
 
 /* Header for class com_petrsu_cardiacare_smartcarequestionnaire_MainActivity */
 
-#ifndef _Included_com_petrsu_cardiacare_smartcare_SmartCare
-#define _Included_com_petrsu_cardiacare_smartcare_SmartCare
+#ifndef _Included_com_petrsu_cardiacare_smartcare_SmartCareLibrary
+#define _Included_com_petrsu_cardiacare_smartcare_SmartCareLibrary
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -13,7 +13,7 @@ extern "C" {
  * Method:    connectSmartSpace
  * Signature: (Ljava/lang/String;Ljava/lang/String;I)I
  */
-JNIEXPORT jlong JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_connectSmartSpace
+JNIEXPORT jlong JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_connectSmartSpace
   (JNIEnv *, jobject, jstring, jstring, jint);
 
 /*
@@ -21,10 +21,10 @@ JNIEXPORT jlong JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_connectSm
  * Method:    disconnectSmartSpace
  * Signature: (J)V
  */
-JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_disconnectSmartSpace
+JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_disconnectSmartSpace
   (JNIEnv *, jobject, jlong);
 
-JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_getQuestionnaire
+JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getQuestionnaire
 (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus
@@ -33,8 +33,8 @@ JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCare_getQues
 #endif
 /* Header for class com_petrsu_cardiacare_smartcarequestionnaire_MainActivity_PatientListTask */
 
-#ifndef _Included_com_petrsu_cardiacare_smartcare_SmartCare_PatientListTask
-#define _Included_com_petrsu_cardiacare_smartcare_SmartCare_PatientListTask
+#ifndef _Included_com_petrsu_cardiacare_smartcare_SmartCareLibrary_PatientListTask
+#define _Included_com_petrsu_cardiacare_smartcare_SmartCareLibrary_PatientListTask
 #ifdef __cplusplus
 extern "C" {
 #endif
