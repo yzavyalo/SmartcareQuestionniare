@@ -21,7 +21,7 @@ LOCAL_C_INCLUDES +=  $(LOCAL_PATH)/includes/ \
                     	$(LOCAL_PATH)/includes/scew/ \
 						$(LOCAL_PATH)/SmartSlog/
 
-LOCAL_MODULE    := smartcare
+LOCAL_MODULE    := smartcare_native
 LOCAL_SRC_FILES := src/kp.c \
 src/kp.h \
 src/agent.c \

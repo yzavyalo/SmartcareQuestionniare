@@ -36,10 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public MainActivity() {
     }
 
-    // Native code part begin
-    static {
-        System.loadLibrary("smartcare");
-    }
+
 
     String TAG = "SS-main";
 
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     static protected long nodeDescriptor;
-    SmartCare smart;
+    SmartCareLibrary smart;
     // Native code part end
     static protected Questionnaire questionnaire;
     Toolbar mToolbar;
@@ -62,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         /*****************************
          * SS init
          *****************************/
-        smart = new SmartCare();
+        smart = new SmartCareLibrary();
         nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
         setRegisteredActivity();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
