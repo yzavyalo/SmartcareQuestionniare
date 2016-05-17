@@ -4,7 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.petrsu.cardiacare.smartcare.*;
@@ -46,6 +48,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else if (Type == Tekst){
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tekst_card, viewGroup, false);
             return new TekstViewHolder(v);
+        } else if (Type == Bipolarquestion){
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.bipolarquestion_card, viewGroup, false);
+            return new BipolarquestionViewHolder(v);
+        } else if (Type == Multiplechoice){
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.multiplechoice_card, viewGroup, false);
+            return new MultipleChoiceViewHolder(v);
         } else {
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
             return new SingleChoiceViewHolder(v);
@@ -92,6 +100,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 holder.DichotomousAnswer1.setText(Item.getItemText());
                 Item = AI.get(1);
                 holder.DichotomousAnswer2.setText(Item.getItemText());
+            }
+        } else if (viewHolder.getItemViewType() == Bipolarquestion) {
+            Question qst = Questions.get(position);
+            Answer A = qst.getAnswer();
+            LinkedList<AnswerItem> AI = A.getItems();
+            BipolarquestionViewHolder holder = (BipolarquestionViewHolder) viewHolder;
+            holder.BipolarquestionQuestion.setText(qst.getDescription());
+            /*if (AI.size() > 0) {
+                AnswerItem Item = AI.get(0);
+                holder.SingleChoiceAnswer1.setText(Item.getItemText());
+                Item = AI.get(1);
+                holder.SingleChoiceAnswer2.setText(Item.getItemText());
+            }*/
+        } else if (viewHolder.getItemViewType() == Multiplechoice) {
+            Question qst = Questions.get(position);
+            Answer A = qst.getAnswer();
+            LinkedList<AnswerItem> AI = A.getItems();
+            MultipleChoiceViewHolder holder = (MultipleChoiceViewHolder) viewHolder;
+            holder.MultipleChoiceQuestion.setText(qst.getDescription());
+            if (AI.size() > 0) {
+                AnswerItem Item = AI.get(0);
+                holder.MultipleAnswer1.setText(Item.getItemText());
+                Item = AI.get(1);
+                holder.MultipleAnswer2.setText(Item.getItemText());
+                Item = AI.get(2);
+                holder.MultipleAnswer3.setText(Item.getItemText());
+                Item = AI.get(3);
+                holder.MultipleAnswer4.setText(Item.getItemText());
             }
         } else if (viewHolder.getItemViewType() == Singlechoice) {
             Question qst = Questions.get(position);
@@ -151,6 +187,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.SingleChoiceAnswer2 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer2);
         }
     }
+
     /*
     *Text Question
      */
@@ -160,6 +197,54 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TekstViewHolder(View v) {
             super(v);
             this.TekstQuestion = (TextView) v.findViewById(R.id.TekstQuestion);
+        }
+    }
+
+    public class MultipleChoiceViewHolder extends ViewHolder {
+        TextView MultipleChoiceQuestion;
+        CheckBox MultipleAnswer1;
+        CheckBox MultipleAnswer2;
+        CheckBox MultipleAnswer3;
+        CheckBox MultipleAnswer4
+                ;
+        public MultipleChoiceViewHolder(View v) {
+            super(v);
+            this.MultipleChoiceQuestion = (TextView) v.findViewById(R.id.MultipleChoiceQuestion);
+            this.MultipleAnswer1 = (CheckBox) v.findViewById(R.id.MultipleAnswer1);
+            this.MultipleAnswer2 = (CheckBox) v.findViewById(R.id.MultipleAnswer2);
+            this.MultipleAnswer3 = (CheckBox) v.findViewById(R.id.MultipleAnswer3);
+            this.MultipleAnswer4 = (CheckBox) v.findViewById(R.id.MultipleAnswer4);
+        }
+    }
+
+    public class BipolarquestionViewHolder extends ViewHolder {
+        TextView BipolarquestionQuestion;
+        TextView textView2;
+        SeekBar seekBar;
+
+        public BipolarquestionViewHolder(View v) {
+            super(v);
+            this.BipolarquestionQuestion = (TextView) v.findViewById(R.id.BipolarquestionQuestion);
+            this.seekBar = (SeekBar) v.findViewById(R.id.seekBar);
+            this.textView2 = (TextView) v.findViewById(R.id.textView2);
+            this.textView2.setText(seekBar.getProgress() + "/" + seekBar.getMax());
+            seekBar.setOnSeekBarChangeListener(
+                    new SeekBar.OnSeekBarChangeListener() {
+                        int progress = 0;
+
+                        public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
+                            progress = progresValue;
+                        }
+
+                        public void onStartTrackingTouch(SeekBar seekBar) {
+
+                        }
+
+                        public void onStopTrackingTouch(SeekBar seekBar) {
+                            textView2.setText(progress + "/" + seekBar.getMax());
+                        }
+                    }
+            );
         }
     }
 }
