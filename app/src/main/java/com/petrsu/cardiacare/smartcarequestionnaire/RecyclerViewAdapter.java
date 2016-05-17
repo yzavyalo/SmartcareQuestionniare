@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -107,12 +108,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             LinkedList<AnswerItem> AI = A.getItems();
             BipolarquestionViewHolder holder = (BipolarquestionViewHolder) viewHolder;
             holder.BipolarquestionQuestion.setText(qst.getDescription());
-            /*if (AI.size() > 0) {
-                AnswerItem Item = AI.get(0);
-                holder.SingleChoiceAnswer1.setText(Item.getItemText());
-                Item = AI.get(1);
-                holder.SingleChoiceAnswer2.setText(Item.getItemText());
-            }*/
         } else if (viewHolder.getItemViewType() == Multiplechoice) {
             Question qst = Questions.get(position);
             Answer A = qst.getAnswer();
@@ -135,12 +130,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             LinkedList<AnswerItem> AI = A.getItems();
             SingleChoiceViewHolder holder = (SingleChoiceViewHolder) viewHolder;
             holder.SingleChoiceQuestion.setText(qst.getDescription());
+            /*
             if (AI.size() > 0) {
                 AnswerItem Item = AI.get(0);
                 holder.SingleChoiceAnswer1.setText(Item.getItemText());
                 Item = AI.get(1);
                 holder.SingleChoiceAnswer2.setText(Item.getItemText());
             }
+            */
         } else if (viewHolder.getItemViewType() == Tekst) {
             Question qst = Questions.get(position);
             TekstViewHolder holder = (TekstViewHolder) viewHolder;
@@ -178,13 +175,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class SingleChoiceViewHolder extends ViewHolder {
         TextView SingleChoiceQuestion;
-        RadioButton SingleChoiceAnswer1, SingleChoiceAnswer2;
+        RadioGroup SingleChoiceGroup;
+        //RadioButton SingleChoiceAnswer1, SingleChoiceAnswer2;
 
         public SingleChoiceViewHolder(View v) {
             super(v);
             this.SingleChoiceQuestion = (TextView) v.findViewById(R.id.SingleChoiceQuestion);
+            //this.SingleChoiceGroup = (RadioGroup) v.findViewById(R.id.SingleChoiceAnswers);
+
+            /*
             this.SingleChoiceAnswer1 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer1);
             this.SingleChoiceAnswer2 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer2);
+            */
         }
     }
 

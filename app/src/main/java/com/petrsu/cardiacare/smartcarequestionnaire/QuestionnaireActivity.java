@@ -5,6 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import com.petrsu.cardiacare.smartcare.*;
 
@@ -33,6 +38,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
         LinkedList<Question> q = MainActivity.questionnaire.getQuestions();
 
         int[] Types = new int[q.size()];
+        String TAG = "SS-main";
 
         for (int i = 0; i < q.size(); i++) {
             Question qst = q.get(i);
@@ -46,6 +52,21 @@ public class QuestionnaireActivity extends AppCompatActivity {
                     break;
                 case "SingleChoise":
                     Types[i] = RecyclerViewAdapter.Singlechoice;
+                    LinkedList <AnswerItem> ai = a.getItems();
+                    if (ai.size() > 0) {
+                        //RadioGroup SingleChoiceGroup = (RadioGroup) findViewById(R.id.SingleChoiceAnswers);
+                        LinearLayout SingleLayout = (LinearLayout) findViewById(R.id.RelativeSingle);
+                        RadioGroup SingleChoiceGroup = new RadioGroup(this);
+                        AnswerItem item;
+                        for (int j = 0; j < ai.size(); j++) {
+                            RadioButton SingleChoiceAnswer = new RadioButton(this);
+                            item = ai.get(j);
+                            SingleChoiceAnswer.setText(item.getItemText());
+                            Log.i(TAG, item.getItemText());
+                            SingleChoiceGroup.addView(SingleChoiceAnswer);
+                        }
+                        SingleLayout.addView(SingleChoiceGroup);
+                    }
                     break;
                 case "BipolarQuestion":
                     Types[i] = RecyclerViewAdapter.Bipolarquestion;
