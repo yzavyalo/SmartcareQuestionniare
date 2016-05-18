@@ -20,7 +20,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
     RecyclerView QuestionnaireRecyclerView;
     RecyclerView.Adapter QuestionnaireAdapter;
     RecyclerView.LayoutManager QuestionnaireLayoutManager;
-    public Context context = this;//getBaseContext();
+    public Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,23 +58,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
                     break;
                 case "SingleChoise":
                     Types[i] = RecyclerViewAdapter.Singlechoice;
-                    /*
-                    LinkedList <AnswerItem> ai = a.getItems();
-                    if (ai.size() > 0) {
-                        //RadioGroup SingleChoiceGroup = (RadioGroup) findViewById(R.id.SingleChoiceAnswers);
-
-                        LinearLayout SingleLayout = (LinearLayout) findViewById(R.id.RelativeSingle);
-                        RadioGroup SingleChoiceGroup = new RadioGroup(this);
-                        AnswerItem item;
-                        for (int j = 0; j < ai.size(); j++) {
-                            RadioButton SingleChoiceAnswer = new RadioButton(this);
-                            item = ai.get(j);
-                            SingleChoiceAnswer.setText(item.getItemText());
-                            SingleChoiceGroup.addView(SingleChoiceAnswer);
-                        }
-                        SingleLayout.addView(SingleChoiceGroup);
-                    }
-                    */
                     break;
                 case "BipolarQuestion":
                     Types[i] = RecyclerViewAdapter.Bipolarquestion;

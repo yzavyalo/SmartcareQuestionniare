@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -107,15 +109,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             LinkedList<AnswerItem> AI = A.getItems();
             MultipleChoiceViewHolder holder = (MultipleChoiceViewHolder) viewHolder;
             holder.MultipleChoiceQuestion.setText(qst.getDescription());
+            CheckBox[] MultipleChoiceAnswers = new CheckBox[AI.size()];
+
             if (AI.size() > 0) {
-                AnswerItem Item = AI.get(0);
-                holder.MultipleAnswer1.setText(Item.getItemText());
-                Item = AI.get(1);
-                holder.MultipleAnswer2.setText(Item.getItemText());
-                Item = AI.get(2);
-                holder.MultipleAnswer3.setText(Item.getItemText());
-                Item = AI.get(3);
-                holder.MultipleAnswer4.setText(Item.getItemText());
+                for (int j = 0; j < AI.size(); j++) {
+                    AnswerItem item = AI.get(j);
+                    MultipleChoiceAnswers[j] = new CheckBox(context);
+                    MultipleChoiceAnswers[j].setId(j);
+                    MultipleChoiceAnswers[j].setText(item.getItemText());
+                    holder.MultipleChoiceLayout.addView(MultipleChoiceAnswers[j]);
+                }
             }
         } else if (viewHolder.getItemViewType() == Singlechoice) {
             Question qst = Questions.get(position);
@@ -133,16 +136,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     SingleChoiceAnswers[j].setText(item.getItemText());
                     holder.SingleChoiceGroup.addView(SingleChoiceAnswers[j]);
                 }
-
             }
-            /*
-            if (AI.size() > 0) {
-                AnswerItem Item = AI.get(0);
-                holder.SingleChoiceAnswer1.setText(Item.getItemText());
-                Item = AI.get(1);
-                holder.SingleChoiceAnswer2.setText(Item.getItemText());
-            }
-            */
         } else if (viewHolder.getItemViewType() == Tekst) {
             Question qst = Questions.get(position);
             TekstViewHolder holder = (TekstViewHolder) viewHolder;
@@ -181,7 +175,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class SingleChoiceViewHolder extends ViewHolder {
         TextView SingleChoiceQuestion;
         RadioGroup SingleChoiceGroup;
-        //RadioButton SingleChoiceAnswer1, SingleChoiceAnswer2;
         RadioButton SingleChoiceAnswer;
 
         public SingleChoiceViewHolder(View v) {
@@ -189,17 +182,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.SingleChoiceQuestion = (TextView) v.findViewById(R.id.SingleChoiceQuestion);
             this.SingleChoiceGroup = (RadioGroup) v.findViewById(R.id.SingleChoiceAnswers);
             this.SingleChoiceAnswer = (RadioButton) v.getParent();
-
-            /*
-            this.SingleChoiceAnswer1 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer1);
-            this.SingleChoiceAnswer2 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer2);
-            */
         }
     }
 
-    /*
-    *Text Question
-     */
     public class TekstViewHolder extends ViewHolder {
         TextView TekstQuestion;
         EditText TekstAnswer;
@@ -213,17 +198,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class MultipleChoiceViewHolder extends ViewHolder {
         TextView MultipleChoiceQuestion;
-        CheckBox MultipleAnswer1;
-        CheckBox MultipleAnswer2;
-        CheckBox MultipleAnswer3;
-        CheckBox MultipleAnswer4;
+        LinearLayout MultipleChoiceLayout;
+        CheckBox MultipleChoiceAnswer;
+
         public MultipleChoiceViewHolder(View v) {
             super(v);
             this.MultipleChoiceQuestion = (TextView) v.findViewById(R.id.MultipleChoiceQuestion);
-            this.MultipleAnswer1 = (CheckBox) v.findViewById(R.id.MultipleAnswer1);
-            this.MultipleAnswer2 = (CheckBox) v.findViewById(R.id.MultipleAnswer2);
-            this.MultipleAnswer3 = (CheckBox) v.findViewById(R.id.MultipleAnswer3);
-            this.MultipleAnswer4 = (CheckBox) v.findViewById(R.id.MultipleAnswer4);
+            this.MultipleChoiceLayout = (LinearLayout) v.findViewById(R.id.LinearMultiple);
+            this.MultipleChoiceAnswer = (CheckBox) v.getParent();
         }
     }
 
