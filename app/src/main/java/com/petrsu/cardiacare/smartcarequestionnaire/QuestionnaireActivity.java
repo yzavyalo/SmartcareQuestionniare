@@ -20,7 +20,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
     RecyclerView QuestionnaireRecyclerView;
     RecyclerView.Adapter QuestionnaireAdapter;
     RecyclerView.LayoutManager QuestionnaireLayoutManager;
-    Context context = getBaseContext();
+    public Context context = this;//getBaseContext();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
