@@ -1,11 +1,11 @@
 package com.petrsu.cardiacare.smartcarequestionnaire;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,7 +20,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
     RecyclerView QuestionnaireRecyclerView;
     RecyclerView.Adapter QuestionnaireAdapter;
     RecyclerView.LayoutManager QuestionnaireLayoutManager;
-
+    Context context = getBaseContext();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
         //MainActivity.feedback.setResponses(MainActivity.questionnaire.getQuestions());
 
         int[] Types = new int[q.size()];
-        String TAG = "SS-main";
 
         for (int i = 0; i < q.size(); i++) {
             Question qst = q.get(i);
@@ -59,9 +58,11 @@ public class QuestionnaireActivity extends AppCompatActivity {
                     break;
                 case "SingleChoise":
                     Types[i] = RecyclerViewAdapter.Singlechoice;
+                    /*
                     LinkedList <AnswerItem> ai = a.getItems();
                     if (ai.size() > 0) {
                         //RadioGroup SingleChoiceGroup = (RadioGroup) findViewById(R.id.SingleChoiceAnswers);
+
                         LinearLayout SingleLayout = (LinearLayout) findViewById(R.id.RelativeSingle);
                         RadioGroup SingleChoiceGroup = new RadioGroup(this);
                         AnswerItem item;
@@ -69,11 +70,11 @@ public class QuestionnaireActivity extends AppCompatActivity {
                             RadioButton SingleChoiceAnswer = new RadioButton(this);
                             item = ai.get(j);
                             SingleChoiceAnswer.setText(item.getItemText());
-                            Log.i(TAG, item.getItemText());
                             SingleChoiceGroup.addView(SingleChoiceAnswer);
                         }
                         SingleLayout.addView(SingleChoiceGroup);
                     }
+                    */
                     break;
                 case "BipolarQuestion":
                     Types[i] = RecyclerViewAdapter.Bipolarquestion;
@@ -95,7 +96,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
             }
         }
 
-        QuestionnaireAdapter = new RecyclerViewAdapter(MainActivity.questionnaire.getQuestions(), Types);
+        QuestionnaireAdapter = new RecyclerViewAdapter(MainActivity.questionnaire.getQuestions(), Types, context);
         QuestionnaireRecyclerView.setAdapter(QuestionnaireAdapter);
     }
 

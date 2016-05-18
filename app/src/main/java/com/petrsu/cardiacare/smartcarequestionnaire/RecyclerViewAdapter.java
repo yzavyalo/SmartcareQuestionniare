@@ -1,5 +1,6 @@
 package com.petrsu.cardiacare.smartcarequestionnaire;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     LinkedList <Question> Questions;
     int[] TypesQuestions;
+    Context context;
 
     public static final int Tekst = 0;
     public static final int Multiplechoice = 1;
@@ -34,9 +36,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static final int Dichotomous = 7;
     public static final int DefaultValue = 8;
 
-    public RecyclerViewAdapter(LinkedList <Question> Questions, int[] Types) {
+    public RecyclerViewAdapter(LinkedList <Question> Questions, int[] Types, Context context) {
         this.Questions = Questions;
         TypesQuestions = Types;
+        this.context = context;
     }
 
     @Override
@@ -63,18 +66,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
             /*
-            case Tekst:
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tekst_card, viewGroup, false);
-                return new ViewHolder(v);
-                break;
-            case Multiplechoise:
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.multiplechoice_card, viewGroup, false);
-                return new ViewHolder(v);
-                break;
-            case Bipolarquestion:
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.bipolarquestion_card, viewGroup, false);
-                return new ViewHolder(v);
-            break;
             case Guttmanscale:
                 v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.guttmansacle_card, viewGroup, false);
                 return new ViewHolder(v);
@@ -132,6 +123,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             LinkedList<AnswerItem> AI = A.getItems();
             SingleChoiceViewHolder holder = (SingleChoiceViewHolder) viewHolder;
             holder.SingleChoiceQuestion.setText(qst.getDescription());
+            RadioButton[] SingleChoiceAnswers = new RadioButton[AI.size()];
+
+            if (AI.size() > 0) {
+                for (int j = 0; j < AI.size(); j++) {
+                    AnswerItem item = AI.get(j);
+                    SingleChoiceAnswers[j] = new RadioButton(context);
+                    SingleChoiceAnswers[j].setId(j);
+                    SingleChoiceAnswers[j].setText(item.getItemText());
+                    holder.SingleChoiceGroup.addView(SingleChoiceAnswers[j]);
+                }
+
+            }
             /*
             if (AI.size() > 0) {
                 AnswerItem Item = AI.get(0);
@@ -179,11 +182,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView SingleChoiceQuestion;
         RadioGroup SingleChoiceGroup;
         //RadioButton SingleChoiceAnswer1, SingleChoiceAnswer2;
+        RadioButton SingleChoiceAnswer;
 
         public SingleChoiceViewHolder(View v) {
             super(v);
             this.SingleChoiceQuestion = (TextView) v.findViewById(R.id.SingleChoiceQuestion);
-            //this.SingleChoiceGroup = (RadioGroup) v.findViewById(R.id.SingleChoiceAnswers);
+            this.SingleChoiceGroup = (RadioGroup) v.findViewById(R.id.SingleChoiceAnswers);
+            this.SingleChoiceAnswer = (RadioButton) v.getParent();
 
             /*
             this.SingleChoiceAnswer1 = (RadioButton) v.findViewById(R.id.SingleChoiceAnswer1);
@@ -211,8 +216,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         CheckBox MultipleAnswer1;
         CheckBox MultipleAnswer2;
         CheckBox MultipleAnswer3;
-        CheckBox MultipleAnswer4
-                ;
+        CheckBox MultipleAnswer4;
         public MultipleChoiceViewHolder(View v) {
             super(v);
             this.MultipleChoiceQuestion = (TextView) v.findViewById(R.id.MultipleChoiceQuestion);
