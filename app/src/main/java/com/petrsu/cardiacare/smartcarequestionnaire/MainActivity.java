@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     SmartCareLibrary smart;
     // Native code part end
     static protected Questionnaire questionnaire;
+    // Save answer
+    static protected Feedback feedback;
     Toolbar mToolbar;
     AccountStorage storage;
     String filename = "questionnaire.json";
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
         questionnaire = smart.getQuestionnaire(nodeDescriptor);
         printQuestionnaire(questionnaire);
+        // id, personName, guestionnaire
+        feedback = new Feedback("1 test", "Student", questionnaire.getUri());
 /*
         Button loadFromSS = (Button)findViewById(R.id.buttonSSLoad);
         loadFromSS.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Gson json = new Gson();
-                String jsonStr = json.toJson(questionnaire);
+                //String jsonStr = json.toJson(questionnaire);
+                String jsonStr = json.toJson(feedback);
                 System.out.println(jsonStr);
                 writeData(jsonStr);
             }

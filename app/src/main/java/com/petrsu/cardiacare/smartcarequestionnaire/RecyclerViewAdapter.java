@@ -14,6 +14,8 @@ import com.petrsu.cardiacare.smartcare.*;
 
 import java.util.LinkedList;
 
+import android.widget.EditText;
+
 /**
  * Kristina Shevtsova
  * Kirill Orloff
@@ -195,10 +197,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     public class TekstViewHolder extends ViewHolder {
         TextView TekstQuestion;
-
+        EditText TekstAnswer;
         public TekstViewHolder(View v) {
             super(v);
             this.TekstQuestion = (TextView) v.findViewById(R.id.TekstQuestion);
+            // get answer
+            this.TekstAnswer = (EditText) v.findViewById(R.id.editText);
         }
     }
 

@@ -36,6 +36,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
         QuestionnaireRecyclerView.setLayoutManager(QuestionnaireLayoutManager);
 
         LinkedList<Question> q = MainActivity.questionnaire.getQuestions();
+        //get list
+        //MainActivity.feedback.setResponses(MainActivity.questionnaire.getQuestions());
 
         int[] Types = new int[q.size()];
         String TAG = "SS-main";
@@ -43,9 +45,14 @@ public class QuestionnaireActivity extends AppCompatActivity {
         for (int i = 0; i < q.size(); i++) {
             Question qst = q.get(i);
             Answer a = qst.getAnswer();
+            // uri respose == iri question
+            Response resp = new Response(q.get(i).getUri(), q.get(i).getUri());
+            // add to list response
+            MainActivity.feedback.addResponse(resp);
             switch(a.getType()) {
                 case "Text":
                     Types[i] = RecyclerViewAdapter.Tekst;
+                    //= gst;
                     break;
                 case "MultipleChoise":
                     Types[i] = RecyclerViewAdapter.Multiplechoice;
@@ -90,6 +97,12 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
         QuestionnaireAdapter = new RecyclerViewAdapter(MainActivity.questionnaire.getQuestions(), Types);
         QuestionnaireRecyclerView.setAdapter(QuestionnaireAdapter);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    //save result
     }
 }
 
