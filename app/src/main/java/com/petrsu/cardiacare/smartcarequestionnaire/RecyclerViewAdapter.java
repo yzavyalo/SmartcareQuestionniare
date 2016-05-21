@@ -12,8 +12,10 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.petrsu.cardiacare.smartcare.*;
 
+import java.text.NumberFormat;
 import java.util.LinkedList;
 
 import android.widget.EditText;
@@ -61,23 +63,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else if (Type == Multiplechoice){
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.multiplechoice_card, viewGroup, false);
             return new MultipleChoiceViewHolder(v);
-        } else if (Type == Likertscale ){
+        } else if (Type == Likertscale){
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.likertscale_card, viewGroup, false);
             return new LikertScaleViewHolder(v);
+        } else if (Type == Guttmanscale) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.guttmanscale_card, viewGroup, false);
+            return new GuttmanScaleViewHolder(v);
         } else {
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
             return new SingleChoiceViewHolder(v);
         }
 
             /*
-            case Guttmanscale:
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.guttmansacle_card, viewGroup, false);
-                return new ViewHolder(v);
-            break;
-            case Continuousscale:
                 v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.continuousscale_card, viewGroup, false);
                 return new ViewHolder(v);
-            break;
             */
     }
 
@@ -97,10 +96,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         } else if (viewHolder.getItemViewType() == Bipolarquestion) {
             Question question = Questions.get(position);
-            //Answer answer = question.getAnswer();
-            //LinkedList<AnswerItem> answeritem = answer.getItems();
+            Answer answer = question.getAnswer();
+            LinkedList<AnswerItem> answeritem = answer.getItems();
             BipolarQuestionViewHolder holder = (BipolarQuestionViewHolder) viewHolder;
             holder.BipolarQuestionQuestion.setText(question.getDescription());
+            if (answeritem.size() > 0) {
+                AnswerItem Item = answeritem.get(0);
+                holder.seekBar.setProgress(Integer.parseInt(Item.getItemText().replaceAll("[\\D]","")));
+                Item = answeritem.get(1);
+                holder.seekBar.setMax(Integer.parseInt(Item.getItemText().replaceAll("[\\D]","")));
+            }
         } else if (viewHolder.getItemViewType() == Multiplechoice) {
             Question question = Questions.get(position);
             Answer answer = question.getAnswer();
@@ -153,7 +158,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     holder.LikertScaleGroup.addView(LikertScaleAnswers[j]);
                 }
             }
+        } else if (viewHolder.getItemViewType() == Guttmanscale) {
+        Question question = Questions.get(position);
+        Answer answer = question.getAnswer();
+        LinkedList<AnswerItem> answeritem = answer.getItems();
+        GuttmanScaleViewHolder holder = (GuttmanScaleViewHolder) viewHolder;
+        holder.GuttmanScaleQuestion.setText(question.getDescription());
+        RadioButton[] GuttmanScaleAnswers = new RadioButton[answeritem.size()];
+        if (answeritem.size() > 0) {
+            for (int j = 0; j < answeritem.size(); j++) {
+                AnswerItem Item = answeritem.get(j);
+                GuttmanScaleAnswers[j] = new RadioButton(context);
+                GuttmanScaleAnswers[j].setId(j);
+                GuttmanScaleAnswers[j].setText(Item.getItemText());
+                holder.GuttmanScaleGroup.addView(GuttmanScaleAnswers[j]);
+            }
         }
+    }
     }
 
     @Override
@@ -223,15 +244,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class BipolarQuestionViewHolder extends ViewHolder {
         TextView BipolarQuestionQuestion;
-        TextView textView2;
+        TextView BipolarValue;
         SeekBar seekBar;
 
         public BipolarQuestionViewHolder(View v) {
             super(v);
             this.BipolarQuestionQuestion = (TextView) v.findViewById(R.id.BipolarQuestionQuestion);
             this.seekBar = (SeekBar) v.findViewById(R.id.seekBar);
-            this.textView2 = (TextView) v.findViewById(R.id.textView2);
-            this.textView2.setText(seekBar.getProgress() + "/" + seekBar.getMax());
+            this.BipolarValue = (TextView) v.findViewById(R.id.BipolarValue);
+            this.BipolarValue.setText(String.valueOf(seekBar.getProgress()));
             seekBar.setOnSeekBarChangeListener(
                     new SeekBar.OnSeekBarChangeListener() {
                         int progress = 0;
@@ -245,7 +266,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         }
 
                         public void onStopTrackingTouch(SeekBar seekBar) {
-                            textView2.setText(progress + "/" + seekBar.getMax());
+                            BipolarValue.setText(String.valueOf(progress));
                         }
                     }
             );
@@ -262,6 +283,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.LikertScaleQuestion = (TextView) v.findViewById(R.id.LikertScaleQuestion);
             this.LikertScaleGroup = (RadioGroup) v.findViewById(R.id.LikertScaleAnswers);
             this.LikertScaleAnswer = (RadioButton) v.getParent();
+        }
+    }
+
+    public class GuttmanScaleViewHolder extends ViewHolder {
+        TextView GuttmanScaleQuestion;
+        RadioGroup GuttmanScaleGroup;
+        RadioButton GuttmanScaleAnswer;
+
+        public GuttmanScaleViewHolder(View v) {
+            super(v);
+            this.GuttmanScaleQuestion = (TextView) v.findViewById(R.id.GuttmanScaleQuestion);
+            this.GuttmanScaleGroup = (RadioGroup) v.findViewById(R.id.GuttmanScaleAnswers);
+            this.GuttmanScaleAnswer = (RadioButton) v.getParent();
         }
     }
 }
