@@ -37,18 +37,18 @@ public class QuestionnaireActivity extends AppCompatActivity {
         QuestionnaireLayoutManager= new LinearLayoutManager(getApplicationContext());
         QuestionnaireRecyclerView.setLayoutManager(QuestionnaireLayoutManager);
 
-        LinkedList<Question> q = MainActivity.questionnaire.getQuestions();
+        LinkedList<Question> questionnaire = MainActivity.questionnaire.getQuestions();
         //get list
         //MainActivity.feedback.setResponses(MainActivity.questionnaire.getQuestions());
 
-        int[] Types = new int[q.size()];
+        int[] Types = new int[questionnaire.size()];
 
-        for (int i = 0; i < q.size(); i++) {
-            Question qst = q.get(i);
-            Answer a = qst.getAnswer();
-            switch(a.getType()) {
+        for (int i = 0; i < questionnaire.size(); i++) {
+            Question question = questionnaire.get(i);
+            Answer answer = question.getAnswer();
+            switch(answer.getType()) {
                 case "Text":
-                    Types[i] = RecyclerViewAdapter.Tekst;
+                    Types[i] = RecyclerViewAdapter.TextField;
                     //= gst;
                     break;
                 case "MultipleChoise":
@@ -85,26 +85,26 @@ public class QuestionnaireActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
     //save result
-        LinkedList<Question> q = MainActivity.questionnaire.getQuestions();
+        LinkedList<Question> questionnnaire = MainActivity.questionnaire.getQuestions();
 
         for (int i = 0; i < QuestionnaireRecyclerView.getChildCount(); i++) {
             //getChildAt(i); return View
-            Question qst = q.get(i);
-            Answer ans = qst.getAnswer();
+            Question question = questionnnaire.get(i);
+            Answer answer = question.getAnswer();
             // uri respose == iri question
-            Response resp = new Response(q.get(i).getUri(), q.get(i).getUri());
+            Response resp = new Response(questionnnaire.get(i).getUri(), questionnnaire.get(i).getUri());
             // add to list response
             //MainActivity.feedback.addResponse(resp);
 
             LinkedList<ResponseItem> AnswerofUser;
-            switch(ans.getType()) {
+            switch(answer.getType()) {
                 case "Text":
                     // ответ, с ИД вответа и какими-то параметрами, разберусь потом
-                    ResponseItem TextAnswer = new ResponseItem(ans.getUri(), "textItem", "fileUri");
+                    ResponseItem TextAnswer = new ResponseItem(answer.getUri(), "textItem", "fileUri");
                     // получаю 0 элемент из списка Answer, TextCard только один ответ
-                    AnswerItem ansitforText = new AnswerItem(ans.getItems().get(0));
+                    AnswerItem AnswerItemForTextField = new AnswerItem(answer.getItems().get(0));
                     // получаю значение из EditText, в других это заранее известно (только надо выбрать отмеченный)
-                    AnswerItem AnswerText = new AnswerItem(ansitforText.getUri(), ansitforText.getItemScore(), ((EditText)QuestionnaireRecyclerView.getChildAt(i).findViewById(R.id.editText)).getText().toString());
+                    AnswerItem AnswerText = new AnswerItem(AnswerItemForTextField.getUri(), AnswerItemForTextField.getItemScore(), ((EditText)QuestionnaireRecyclerView.getChildAt(i).findViewById(R.id.editText)).getText().toString());
                     /*
                     if(((EditText)QuestionnaireRecyclerView.getChildAt(i).findViewById(R.id.editText)).getText().toString() != "") { // (EditText) -- TekstAnswer.getText()
                         AnswerItem f1 = new AnswerItem(a.getItems().get(0));
@@ -120,14 +120,14 @@ public class QuestionnaireActivity extends AppCompatActivity {
                     break;
                 case "MultipleChoise":
                     // ответ, с ИД вответа и какими-то параметрами, разберусь потом
-                    ResponseItem MultipleChoiseAnswer = new ResponseItem(ans.getUri(), "textItem", "fileUri");
-                    for(int j = 0; j < ans.getItems().size(); j++) {
+                    ResponseItem MultipleChoiseAnswer = new ResponseItem(answer.getUri(), "textItem", "fileUri");
+                    for(int j = 0; j < answer.getItems().size(); j++) {
                         // получаю j элемент из списка Answer, MultipleChoiseCard много ответов
-                        AnswerItem ansitforMultipleChoise = new AnswerItem(ans.getItems().get(j));
+                        AnswerItem AnswerItemForMultipleChoise = new AnswerItem(answer.getItems().get(j));
                         // если из списка LinearLayout есть выбранный CheckBox
                         if(( (CheckBox) ((LinearLayout)QuestionnaireRecyclerView.getChildAt(i).findViewById(R.id.LinearMultiple)).getChildAt(j)).isChecked()) {
                             // получаю значение из CheckBox, точнее из списка ответов к данному вопросу
-                            AnswerItem AnswerMultipleChoise = new AnswerItem(ansitforMultipleChoise.getUri(), ansitforMultipleChoise.getItemScore(), ansitforMultipleChoise.getItemText()/**/);
+                            AnswerItem AnswerMultipleChoise = new AnswerItem(AnswerItemForMultipleChoise.getUri(), AnswerItemForMultipleChoise.getItemScore(), AnswerItemForMultipleChoise.getItemText()/**/);
                             // Собираю полученное значение в ответ
                             MultipleChoiseAnswer.addLinkedAnswerItem(AnswerMultipleChoise);
                             // Собираю полученное значение в "вопрос"

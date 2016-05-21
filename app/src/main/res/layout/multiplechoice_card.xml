@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:id="@+id/DichotomousCardView">
+    android:id="@+id/MultipleChoiceCardView">
 
     <RelativeLayout
         android:layout_width="match_parent"
