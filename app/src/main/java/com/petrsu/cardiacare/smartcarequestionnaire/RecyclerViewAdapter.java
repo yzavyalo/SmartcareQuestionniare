@@ -69,15 +69,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else if (Type == Guttmanscale) {
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.guttmanscale_card, viewGroup, false);
             return new GuttmanScaleViewHolder(v);
+        } else if (Type == Continuousscale) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.continuousscale_card, viewGroup, false);
+            return new ContinuousScaleViewHolder(v);
         } else {
             v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.singlechoice_card, viewGroup, false);
             return new SingleChoiceViewHolder(v);
         }
-
-            /*
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.continuousscale_card, viewGroup, false);
-                return new ViewHolder(v);
-            */
     }
 
     @Override
@@ -102,9 +100,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.BipolarQuestionQuestion.setText(question.getDescription());
             if (answeritem.size() > 0) {
                 AnswerItem Item = answeritem.get(0);
-                holder.seekBar.setProgress(Integer.parseInt(Item.getItemText().replaceAll("[\\D]","")));
+                holder.BipolarQuestionSeekBar.setProgress(Integer.parseInt(Item.getItemText().replaceAll("[\\D]", "")));
                 Item = answeritem.get(1);
-                holder.seekBar.setMax(Integer.parseInt(Item.getItemText().replaceAll("[\\D]","")));
+                holder.BipolarQuestionSeekBar.setMax(Integer.parseInt(Item.getItemText().replaceAll("[\\D]", "")));
             }
         } else if (viewHolder.getItemViewType() == Multiplechoice) {
             Question question = Questions.get(position);
@@ -159,22 +157,46 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
             }
         } else if (viewHolder.getItemViewType() == Guttmanscale) {
-        Question question = Questions.get(position);
-        Answer answer = question.getAnswer();
-        LinkedList<AnswerItem> answeritem = answer.getItems();
-        GuttmanScaleViewHolder holder = (GuttmanScaleViewHolder) viewHolder;
-        holder.GuttmanScaleQuestion.setText(question.getDescription());
-        RadioButton[] GuttmanScaleAnswers = new RadioButton[answeritem.size()];
-        if (answeritem.size() > 0) {
-            for (int j = 0; j < answeritem.size(); j++) {
-                AnswerItem Item = answeritem.get(j);
-                GuttmanScaleAnswers[j] = new RadioButton(context);
-                GuttmanScaleAnswers[j].setId(j);
-                GuttmanScaleAnswers[j].setText(Item.getItemText());
-                holder.GuttmanScaleGroup.addView(GuttmanScaleAnswers[j]);
+            Question question = Questions.get(position);
+            Answer answer = question.getAnswer();
+            LinkedList<AnswerItem> answeritem = answer.getItems();
+            GuttmanScaleViewHolder holder = (GuttmanScaleViewHolder) viewHolder;
+            holder.GuttmanScaleQuestion.setText(question.getDescription());
+            RadioButton[] GuttmanScaleAnswers = new RadioButton[answeritem.size()];
+            if (answeritem.size() > 0) {
+                for (int j = 0; j < answeritem.size(); j++) {
+                    AnswerItem Item = answeritem.get(j);
+                    GuttmanScaleAnswers[j] = new RadioButton(context);
+                    GuttmanScaleAnswers[j].setId(j);
+                    GuttmanScaleAnswers[j].setText(Item.getItemText());
+                    holder.GuttmanScaleGroup.addView(GuttmanScaleAnswers[j]);
+                }
+            }
+        } else if (viewHolder.getItemViewType() == Continuousscale) {
+            Question question = Questions.get(position);
+            Answer answer = question.getAnswer();
+            LinkedList<AnswerItem> answeritem = answer.getItems();
+            ContinuousScaleViewHolder holder = (ContinuousScaleViewHolder) viewHolder;
+            holder.ContinuousScaleQuestion.setText(question.getDescription());
+            if (answeritem.size() > 0) {
+                AnswerItem Item = answeritem.get(0);
+                holder.ContinuousScaleSeekBar.setProgress(Integer.parseInt(Item.getItemText().replaceAll("[\\D]", "")));
+                Item = answeritem.get(1);
+                int Max = Integer.parseInt(Item.getItemText().replaceAll("[\\D]", ""));
+                holder.ContinuousScaleSeekBar.setMax(Max);
+                //Item = answeritem.get(2);
+                //int Step = Integer.parseInt(Item.getItemText().replaceAll("[\\D]", ""));
+                int Step = 10;
+                TextView[] ContinuousScaleAnswers = new TextView[Step + 1];
+                for (int j = 0; j < Step + 1; j++) {
+                    ContinuousScaleAnswers[j] = new TextView(context);
+                    ContinuousScaleAnswers[j].setId(j);
+                    ContinuousScaleAnswers[j].setText(Integer.toString((Max / Step * j)));
+                    ContinuousScaleAnswers[j].setLayoutParams(holder.params);
+                    holder.ContinuousScaleIntervals.addView(ContinuousScaleAnswers[j]);
+                }
             }
         }
-    }
     }
 
     @Override
@@ -244,31 +266,31 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class BipolarQuestionViewHolder extends ViewHolder {
         TextView BipolarQuestionQuestion;
-        TextView BipolarValue;
-        SeekBar seekBar;
+        TextView BipolarQuestionValue;
+        SeekBar BipolarQuestionSeekBar;
 
         public BipolarQuestionViewHolder(View v) {
             super(v);
             this.BipolarQuestionQuestion = (TextView) v.findViewById(R.id.BipolarQuestionQuestion);
-            this.seekBar = (SeekBar) v.findViewById(R.id.seekBar);
-            this.BipolarValue = (TextView) v.findViewById(R.id.BipolarValue);
-            this.BipolarValue.setText(String.valueOf(seekBar.getProgress()));
-            seekBar.setOnSeekBarChangeListener(
-                    new SeekBar.OnSeekBarChangeListener() {
-                        int progress = 0;
+            this.BipolarQuestionSeekBar = (SeekBar) v.findViewById(R.id.BipolarQuestionSeekBar);
+            this.BipolarQuestionValue = (TextView) v.findViewById(R.id.BipolarQuestionValue);
+            this.BipolarQuestionValue.setText(String.valueOf(BipolarQuestionSeekBar.getProgress()));
+            BipolarQuestionSeekBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    int progress = 0;
 
-                        public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                            progress = progresValue;
-                        }
-
-                        public void onStartTrackingTouch(SeekBar seekBar) {
-
-                        }
-
-                        public void onStopTrackingTouch(SeekBar seekBar) {
-                            BipolarValue.setText(String.valueOf(progress));
-                        }
+                    public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+                        progress = progressValue;
                     }
+
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        BipolarQuestionValue.setText(String.valueOf(progress));
+                    }
+                }
             );
         }
     }
@@ -296,6 +318,45 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.GuttmanScaleQuestion = (TextView) v.findViewById(R.id.GuttmanScaleQuestion);
             this.GuttmanScaleGroup = (RadioGroup) v.findViewById(R.id.GuttmanScaleAnswers);
             this.GuttmanScaleAnswer = (RadioButton) v.getParent();
+        }
+    }
+
+    public class ContinuousScaleViewHolder extends ViewHolder {
+        TextView ContinuousScaleQuestion;
+        TextView ContinuousScaleAnswer;
+        TextView ContinuousScaleValue;
+        SeekBar ContinuousScaleSeekBar;
+        LinearLayout ContinuousScaleIntervals;
+        LinearLayout.LayoutParams params;
+
+        public ContinuousScaleViewHolder(View v) {
+            super(v);
+            this.ContinuousScaleQuestion = (TextView) v.findViewById(R.id.ContinuousScaleQuestion);
+            this.ContinuousScaleIntervals = (LinearLayout) v.findViewById(R.id.ContinuousScaleIntervals);
+            this.params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.weight = 1.0f;
+            this.ContinuousScaleAnswer = (TextView) v.getParent();
+            this.ContinuousScaleSeekBar = (SeekBar) v.findViewById(R.id.ContinuousScaleSeekBar);
+            this.ContinuousScaleValue = (TextView) v.findViewById(R.id.ContinuousScaleValue);
+            this.ContinuousScaleValue.setText(String.valueOf(ContinuousScaleSeekBar.getProgress()));
+            ContinuousScaleSeekBar.setOnSeekBarChangeListener(
+                    new SeekBar.OnSeekBarChangeListener() {
+                        int Step = 10;
+                        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                            progress = ((int)Math.round(progress/Step))*Step;
+                            seekBar.setProgress(progress);
+                            ContinuousScaleValue.setText(progress + "");
+                        }
+
+                        public void onStartTrackingTouch(SeekBar seekBar) {
+
+                        }
+
+                        public void onStopTrackingTouch(SeekBar seekBar) {
+
+                        }
+                    }
+            );
         }
     }
 }
