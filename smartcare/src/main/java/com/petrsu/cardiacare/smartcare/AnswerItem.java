@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * Created by Iuliia Zavialova on 09.03.16.
  */
 public class AnswerItem {
-    private String uri;
+    private String uri;//uri ид
     private String itemScore;
     private String itemText;
     LinkedList<Answer> subAnswers;

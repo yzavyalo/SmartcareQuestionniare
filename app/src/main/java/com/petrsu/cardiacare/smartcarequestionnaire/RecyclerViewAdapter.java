@@ -29,15 +29,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     int[] TypesQuestions;
     Context context;
 
-    public static final int TextField = 0;
-    public static final int Multiplechoice = 1;
-    public static final int Singlechoice = 2;
-    public static final int Bipolarquestion = 3;
+    public static final int TextField = 0;//true
+    public static final int Multiplechoice = 1;//true
+    public static final int Singlechoice = 2;//true
+    public static final int Bipolarquestion = 3;//true50/50
     public static final int Guttmanscale = 4;
     public static final int Likertscale = 5;
     public static final int Continuousscale = 6;
     public static final int Dichotomous = 7;
     public static final int DefaultValue = 8;
+    // ответник
+    LinkedList<Response> feedback = MainActivity.feedback.getResponses();
 
     public RecyclerViewAdapter(LinkedList <Question> Questions, int[] Types, Context context) {
         this.Questions = Questions;
@@ -97,6 +99,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Answer answer = question.getAnswer();
             LinkedList<AnswerItem> answeritem = answer.getItems();
             BipolarQuestionViewHolder holder = (BipolarQuestionViewHolder) viewHolder;
+
+            //видимо тут отображать ответ буду
+            for(int fbc = 0; fbc < feedback.size(); fbc++){
+                if(question.getUri() == feedback.get(fbc).getUri()) {
+                    holder.BipolarQuestionValue.setText(feedback.get(fbc).getResponseItems().get(0).getLinkedItems().get(0).getItemText().toString());
+                    holder.BipolarQuestionSeekBar.setProgress(Integer.parseInt(holder.BipolarQuestionValue.getText().toString()));
+                }
+            }
+
             holder.BipolarQuestionQuestion.setText(question.getDescription());
             if (answeritem.size() > 0) {
                 AnswerItem Item = answeritem.get(0);
@@ -117,6 +128,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     MultipleChoiceAnswers[j] = new CheckBox(context);
                     MultipleChoiceAnswers[j].setId(j);
                     MultipleChoiceAnswers[j].setText(Item.getItemText());
+                    //holder.MultipleChoiceLayout.addView(MultipleChoiceAnswers[j]);
+
+                    //тут пишу проверку с ответами
+                    for(int fbc = 0; fbc < feedback.size(); fbc++){
+                        if(question.getUri() == feedback.get(fbc).getUri()) {
+                            for (int aic = 0; aic < feedback.get(fbc).getResponseItems().get(0).getLinkedItems().size(); aic++) {
+                                if(question.getAnswer().getItems().get(j).getUri() == feedback.get(fbc).getResponseItems().get(0).getLinkedItems().get(aic).getUri()){
+                                    //
+                                    MultipleChoiceAnswers[j].setChecked(true);///
+                                }
+                            }
+                        }
+                    }
+                    //восстанавливаю отображение
                     holder.MultipleChoiceLayout.addView(MultipleChoiceAnswers[j]);
                 }
             }
@@ -133,6 +158,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     SingleChoiceAnswers[j] = new RadioButton(context);
                     SingleChoiceAnswers[j].setId(j);
                     SingleChoiceAnswers[j].setText(Item.getItemText());
+                    //тут отображение ответов
+                    for(int fbc = 0; fbc < feedback.size(); fbc++){
+                        if(question.getUri() == feedback.get(fbc).getUri()) {
+                            for (int aic = 0; aic < feedback.get(fbc).getResponseItems().get(0).getLinkedItems().size(); aic++) {
+                                if(question.getAnswer().getItems().get(j).getUri() == feedback.get(fbc).getResponseItems().get(0).getLinkedItems().get(aic).getUri()){
+                                    //
+                                    SingleChoiceAnswers[j].setChecked(true);///
+                                }
+                            }
+                        }
+                    }
                     holder.SingleChoiceGroup.addView(SingleChoiceAnswers[j]);
                 }
             }
@@ -140,6 +176,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Question question = Questions.get(position);
             TextFieldViewHolder holder = (TextFieldViewHolder) viewHolder;
             holder.TextFieldQuestion.setText(question.getDescription());
+
+            //тут пишу проверку с ответами
+            for(int fbc = 0; fbc < feedback.size(); fbc++){
+                if(question.getUri() == feedback.get(fbc).getUri()) {
+                    holder.TextFieldAnswer.setText(feedback.get(fbc).getResponseItems().get(0).getLinkedItems().get(0).getItemText().toString());
+                }
+            }
         } else if (viewHolder.getItemViewType() == Likertscale) {
             Question question = Questions.get(position);
             Answer answer = question.getAnswer();
@@ -169,6 +212,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     GuttmanScaleAnswers[j] = new RadioButton(context);
                     GuttmanScaleAnswers[j].setId(j);
                     GuttmanScaleAnswers[j].setText(Item.getItemText());
+                    //тут отображение ответов
+                    for(int fbc = 0; fbc < feedback.size(); fbc++){
+                        if(question.getUri() == feedback.get(fbc).getUri()) {
+                            for (int aic = 0; aic < feedback.get(fbc).getResponseItems().get(0).getLinkedItems().size(); aic++) {
+                                if(question.getAnswer().getItems().get(j).getUri() == feedback.get(fbc).getResponseItems().get(0).getLinkedItems().get(aic).getUri()){
+                                    //
+                                    GuttmanScaleAnswers[j].setChecked(true);///
+                                }
+                            }
+                        }
+                    }
                     holder.GuttmanScaleGroup.addView(GuttmanScaleAnswers[j]);
                 }
             }
@@ -248,6 +302,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.TextFieldQuestion = (TextView) v.findViewById(R.id.TextQuestion);
             // get answer
             this.TextFieldAnswer = (EditText) v.findViewById(R.id.editText);
+            //this.TextFieldAnswer.setText("текст при создании");
         }
     }
 

@@ -73,6 +73,93 @@ public class MainActivity extends AppCompatActivity {
         // id, personName, guestionnaire
         feedback = new Feedback("1 test", "Student", questionnaire.getUri());
 /*
+        feedback = new Feedback("1 test", "Student", "feedback");
+        //создаю опросник
+        questionnaire = new Questionnaire("questionaire");
+
+        //вопрос создаем
+        Question question = new Question("question", "Quest?");
+        //тип ответа создаем
+        Answer answer_from_sib = new Answer("answer", "Text");
+        //добавляю тип в вопрос
+        question.setAnswer(answer_from_sib);
+        //текст ответ создаем
+        AnswerItem item = new AnswerItem("111","111","");
+        //добавляю текст ответа в тип
+        answer_from_sib.addAnswerItem(item);
+        //добавляю вопрос в опросник
+        questionnaire.addQuestion(question);
+
+        //вопрос создаем
+        Question question2 = new Question("question2", "Quest2?");
+        //тип ответа создаем
+        Answer answer_from_sib2 = new Answer("answer2", "MultipleChoise");
+        //добавляю тип в вопрос
+        question2.setAnswer(answer_from_sib2);
+        //текст ответ создаем
+        AnswerItem item21 = new AnswerItem("221","221","item1");
+        //добавляю текст ответа в тип
+        answer_from_sib2.addAnswerItem(item21);
+        //текст ответ создаем
+        AnswerItem item22 = new AnswerItem("222","222","item2");
+        //добавляю текст ответа в тип
+        answer_from_sib2.addAnswerItem(item22);
+        //добавляю вопрос в опросник
+        questionnaire.addQuestion(question2);
+
+        //вопрос создаем
+        Question question3 = new Question("question3", "Quest3?");
+        //тип ответа создаем
+        Answer answer_from_sib3 = new Answer("answer3", "SingleChoise");
+        //добавляю тип в вопрос
+        question3.setAnswer(answer_from_sib3);
+        //текст ответ создаем
+        AnswerItem item31 = new AnswerItem("331","331","item1");
+        //добавляю текст ответа в тип
+        answer_from_sib3.addAnswerItem(item31);
+        //текст ответ создаем
+        AnswerItem item32 = new AnswerItem("332","332","item2");
+        //добавляю текст ответа в тип
+        answer_from_sib3.addAnswerItem(item32);
+        //добавляю вопрос в опросник
+        questionnaire.addQuestion(question3);
+
+        //вопрос создаем
+        Question question4 = new Question("question4", "Quest text4?");
+        //тип ответа создаем
+        Answer answer_from_sib4 = new Answer("answer4", "BipolarQuestion");
+        //добавляю тип в вопрос
+        question4.setAnswer(answer_from_sib4);
+        //текст ответ создаем
+        AnswerItem item4 = new AnswerItem("444","444","0");
+        //добавляю текст ответа в тип
+        answer_from_sib4.addAnswerItem(item4);
+        //текст ответ создаем
+        AnswerItem item42 = new AnswerItem("444","444","100");
+        //добавляю текст ответа в тип
+        answer_from_sib4.addAnswerItem(item42);
+        //добавляю вопрос в опросник
+        questionnaire.addQuestion(question4);
+
+        //вопрос создаем
+        Question question5 = new Question("question4", "Quest text4?");
+        //тип ответа создаем
+        Answer answer_from_sib5 = new Answer("answer4", "GuttmanScale");
+        //добавляю тип в вопрос
+        question5.setAnswer(answer_from_sib5);
+        //текст ответ создаем
+        AnswerItem item5 = new AnswerItem("444","444","0");
+        //добавляю текст ответа в тип
+        answer_from_sib5.addAnswerItem(item5);
+        //текст ответ создаем
+        AnswerItem item52 = new AnswerItem("444","444","100");
+        //добавляю текст ответа в тип
+        answer_from_sib5.addAnswerItem(item52);
+        //добавляю вопрос в опросник
+        questionnaire.addQuestion(question5);*/
+
+
+/*
         Button loadFromSS = (Button)findViewById(R.id.buttonSSLoad);
         loadFromSS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +190,11 @@ public class MainActivity extends AppCompatActivity {
 //                    Questionnaire qst = json.fromJson(jsonFromFile,Questionnaire.class);
 //                    questionnaire = qst;
 //                    printQuestionnaire(questionnaire);
+                    String jsonFromFile = readSavedData();
+                    Gson json = new Gson();
+                    Feedback qst = json.fromJson(jsonFromFile,Feedback.class);
+                    feedback = qst;
+                    //printQuestionnaire(feedback);
             }
         });
 
