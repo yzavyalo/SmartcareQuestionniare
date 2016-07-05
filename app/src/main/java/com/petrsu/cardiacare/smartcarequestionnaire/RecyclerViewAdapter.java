@@ -19,6 +19,7 @@ import java.text.NumberFormat;
 import java.util.LinkedList;
 
 import android.widget.EditText;
+import android.view.View.OnClickListener;
 
 /**
  * Kristina Shevtsova
@@ -33,11 +34,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static final int Multiplechoice = 1;//true
     public static final int Singlechoice = 2;//true
     public static final int Bipolarquestion = 3;//true50/50
-    public static final int Guttmanscale = 4;
-    public static final int Likertscale = 5;
+    public static final int Guttmanscale = 4;//true
+    public static final int Likertscale = 5;//true
     public static final int Continuousscale = 6;
     public static final int Dichotomous = 7;
     public static final int DefaultValue = 8;
+
     // ответник
     LinkedList<Response> feedback = MainActivity.feedback.getResponses();
 
@@ -151,6 +153,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             LinkedList<AnswerItem> answeritem = answer.getItems();
             SingleChoiceViewHolder holder = (SingleChoiceViewHolder) viewHolder;
             holder.SingleChoiceQuestion.setText(question.getDescription());
+            holder.uri = question.getUri();
             RadioButton[] SingleChoiceAnswers = new RadioButton[answeritem.size()];
             if (answeritem.size() > 0) {
                 for (int j = 0; j < answeritem.size(); j++) {
@@ -196,6 +199,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     LikertScaleAnswers[j] = new RadioButton(context);
                     LikertScaleAnswers[j].setId(j);
                     LikertScaleAnswers[j].setText(Item.getItemText());
+                    //тут отображение ответов
+                    for(int fbc = 0; fbc < feedback.size(); fbc++){
+                        if(question.getUri() == feedback.get(fbc).getUri()) {
+                            for (int aic = 0; aic < feedback.get(fbc).getResponseItems().get(0).getLinkedItems().size(); aic++) {
+                                if(question.getAnswer().getItems().get(j).getUri() == feedback.get(fbc).getResponseItems().get(0).getLinkedItems().get(aic).getUri()){
+                                    //
+                                    LikertScaleAnswers[j].setChecked(true);///
+                                }
+                            }
+                        }
+                    }
                     holder.LikertScaleGroup.addView(LikertScaleAnswers[j]);
                 }
             }
@@ -231,6 +245,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Answer answer = question.getAnswer();
             LinkedList<AnswerItem> answeritem = answer.getItems();
             ContinuousScaleViewHolder holder = (ContinuousScaleViewHolder) viewHolder;
+
+            //видимо тут отображать ответ буду
+            for(int fbc = 0; fbc < feedback.size(); fbc++){
+                if(question.getUri() == feedback.get(fbc).getUri()) {
+                    holder.ContinuousScaleValue.setText(feedback.get(fbc).getResponseItems().get(0).getLinkedItems().get(0).getItemText().toString());
+                    holder.ContinuousScaleSeekBar.setProgress(Integer.parseInt(holder.ContinuousScaleValue.getText().toString()));
+                }
+            }
+
             holder.ContinuousScaleQuestion.setText(question.getDescription());
             if (answeritem.size() > 0) {
                 AnswerItem Item = answeritem.get(0);
@@ -285,12 +308,37 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView SingleChoiceQuestion;
         RadioGroup SingleChoiceGroup;
         RadioButton SingleChoiceAnswer;
+        String uri;
 
         public SingleChoiceViewHolder(View v) {
             super(v);
             this.SingleChoiceQuestion = (TextView) v.findViewById(R.id.SingleChoiceQuestion);
             this.SingleChoiceGroup = (RadioGroup) v.findViewById(R.id.SingleChoiceAnswers);
             this.SingleChoiceAnswer = (RadioButton) v.getParent();
+
+            SingleChoiceGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    System.out.println("Touch! SingleChoice "+checkedId+" "+uri);
+
+                    for (int i = 0; i < MainActivity.questionnaire.getQuestions().size(); i++){
+                        if(MainActivity.questionnaire.getQuestions().get(i).getUri() == uri){
+                            //вопрос
+                            Question questionSingleChoice = MainActivity.questionnaire.getQuestions().get(i);
+                            //тип ответов
+                            Answer answerSingleChoice = questionSingleChoice.getAnswer();
+                            //ответ выбранный
+                            AnswerItem answeritemSingleChoice = answerSingleChoice.getItems().get(checkedId);
+                            Response responseSingleChoice = new Response(questionSingleChoice.getUri(), questionSingleChoice.getUri());
+                            ResponseItem itemSingleChoice = new ResponseItem(answerSingleChoice.getUri(), answerSingleChoice.getType(), answerSingleChoice.getUri());
+                            itemSingleChoice.addLinkedAnswerItem(answeritemSingleChoice);
+                            responseSingleChoice.addResponseItem(itemSingleChoice);
+                            MainActivity.feedback.addResponse(responseSingleChoice);
+                        }
+                    }
+                }
+            });
+
         }
     }
 

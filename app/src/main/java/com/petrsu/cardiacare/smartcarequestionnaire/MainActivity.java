@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-
+/*
         smart = new SmartCareLibrary();
         nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
         questionnaire = smart.getQuestionnaire(nodeDescriptor);
         printQuestionnaire(questionnaire);
         // id, personName, guestionnaire
-        feedback = new Feedback("1 test", "Student", questionnaire.getUri());
-/*
+        feedback = new Feedback("1 test", "Student", questionnaire.getUri());*/
+
         feedback = new Feedback("1 test", "Student", "feedback");
         //создаю опросник
         questionnaire = new Questionnaire("questionaire");
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         //добавляю текст ответа в тип
         answer_from_sib5.addAnswerItem(item52);
         //добавляю вопрос в опросник
-        questionnaire.addQuestion(question5);*/
+        questionnaire.addQuestion(question5);
 
 
 /*
